@@ -1,0 +1,43 @@
+/* Page racine de blackoune.github.io : porte le logo et le nom du site
+   pour Google, puis mène au site d'OBS Dynamics. Mêmes couleurs que lui. */
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/archivo.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+  background: #0b0f17; color: #e6ebf2;
+  font-family: 'Archivo', system-ui, sans-serif; line-height: 1.6;
+}
+main {
+  flex: 1; width: 100%; max-width: 44rem; margin: 0 auto;
+  padding: clamp(3rem, 12vh, 8rem) 1rem 2rem;
+  display: grid; justify-items: start; align-content: center; gap: .5rem;
+}
+.logo { width: 4.5rem; height: 4.5rem; margin-bottom: 1rem; }
+h1 {
+  margin: 0 0 .5rem; font-size: clamp(2.8rem, 9vw, 4.8rem); line-height: 1;
+  font-weight: 800; font-stretch: 72%; letter-spacing: -.02em;
+}
+h1 b { color: #22d3ee; }
+p { margin: 0; font-size: 1.15rem; color: #93a0b4; max-width: 36rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+.btn {
+  display: inline-block; padding: .8rem 1.3rem; border-radius: .6rem; font-weight: 650;
+  text-decoration: none; color: #e6ebf2; background: #111724; border: 1px solid #222c3d;
+}
+.btn:hover { border-color: #93a0b4; }
+.btn.primaire { background: #22d3ee; color: #04141a; border-color: #22d3ee; }
+.btn.primaire:hover { background: #67e8f9; }
+:focus-visible { outline: 2px solid #22d3ee; outline-offset: 3px; }
+footer { padding: 2rem 1rem; text-align: center; font-size: .9rem; color: #93a0b4; border-top: 1px solid #222c3d; }
+footer a { color: inherit; }
+.guides { margin-top: 3rem; }
+.guides-titre { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: #22d3ee; margin-bottom: .5rem; }
+.guides ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+.guides a { color: #e6ebf2; }
