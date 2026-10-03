@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://blackoune.github.io/sitemap.xml
-Sitemap: https://blackoune.github.io/OBS-Dynamics/sitemap.xml

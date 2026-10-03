@@ -1,0 +1,37 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 4 * * 1"  # chaque lundi : une nouvelle règle peut trouver une faille ancienne
+
+permissions:
+  contents: read
+
+jobs:
+  analyse:
+    # Dépôt privé sans Code Security payant : GitHub refuse les résultats
+    # (« Code scanning is not enabled »). Le job démarre seul au passage en public.
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read           # CodeQL lit l'état de son propre run (sans ça : « Resource not accessible by integration »)
+      security-events: write  # publier les résultats dans l'onglet Security
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript-typescript, actions]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: github/codeql-action/init@2892aa5e19bbd11bc0cff5427e3b750a04d9e3c2 # v4.38.2
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+
+      - uses: github/codeql-action/analyze@2892aa5e19bbd11bc0cff5427e3b750a04d9e3c2 # v4.38.2
+        with:
+          category: /language:${{ matrix.language }}

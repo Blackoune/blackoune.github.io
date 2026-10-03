@@ -1,0 +1,33 @@
+---
+import '@fontsource-variable/archivo/wdth.css';
+import '../styles/global.css';
+import { CSP, url } from '../site';
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content={CSP} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="noindex" />
+    <title>Page introuvable — OBS Dynamics</title>
+    <link rel="icon" type="image/png" href={url('favicon.png')} />
+  </head>
+  <body>
+    <main class="introuvable">
+      <p class="surtitre">404</p>
+      <h1 class="titre-page">Page introuvable</h1>
+      <p class="chapo" lang="en">Page not found.</p>
+      <p><a class="btn btn-primaire" href={url()}>OBS Dynamics</a></p>
+    </main>
+    <script>
+      import '../scripts/ancienne-adresse';
+    </script>
+  </body>
+</html>
+
+<style>
+  .introuvable { padding: clamp(4rem, 15vh, 8rem) 0 2rem; }
+</style>

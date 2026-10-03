@@ -1,8 +1,13 @@
-# blackoune.github.io
+# OBS Dynamics — site officiel
 
-Page racine de https://blackoune.github.io/ . Elle donne à Google le logo et le nom
-« OBS Dynamics » de tout le domaine (Google n'en accepte qu'un par adresse racine),
-sert robots.txt et llms.txt à l'emplacement standard, puis mène au site :
-https://blackoune.github.io/OBS-Dynamics/ (code : dépôt Blackoune/OBS-Dynamics).
+Code du site https://blackoune.github.io/ : présentation, installation, aide et
+guides du logiciel OBS Dynamics (code du logiciel : dépôt Blackoune/OBS-Dynamics).
 
-Publication : Settings → Pages → Deploy from a branch → main / (root).
+- Astro, sortie 100 % statique, hébergé par GitHub Pages.
+- Aucune ressource externe, CSP stricte : vérifiée à chaque build par scripts/check-dist.mjs.
+- La page Installation lit la dernière release d'OBS Dynamics au moment du build.
+  Le site est reconstruit chaque jour, ou à la main : Actions → Site → Run workflow.
+
+Développement : npm ci, puis npm run dev. Contrôles : npx astro check, npm test, npm run build.
+
+Licence GPL-3.0.

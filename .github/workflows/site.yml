@@ -1,0 +1,69 @@
+name: Site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  # Chaque jour : la page Installation reprend la dernière release
+  # d'OBS Dynamics, lue au build dans le dépôt Blackoune/OBS-Dynamics.
+  schedule:
+    - cron: "17 5 * * *"
+
+permissions:
+  contents: read
+
+# Un seul déploiement à la fois ; celui en cours va jusqu'au bout.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Installer les dépendances (versions exactes du lockfile)
+        run: npm ci
+
+      - name: Vulnérabilités connues
+        # npm audit, seuil high, avec exceptions justifiées et datées (scripts/audit.mjs).
+        run: npm run audit
+
+      - name: Vérifier les types
+        run: npx astro check
+
+      - name: Contrôler les données de la FAQ
+        run: npm test
+
+      - name: Construire et contrôler dist/ (check-dist.mjs)
+        # Le jeton ne sert qu'à lire la dernière release pendant le build
+        # (limite de l'API GitHub plus haute). Il n'arrive jamais dans le site.
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    # Pas de déploiement depuis une pull request.
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - id: deploiement
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

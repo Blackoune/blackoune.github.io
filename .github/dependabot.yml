@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # Les versions sont épinglées : sans mise à jour proposée, elles vieillissent.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
