@@ -193,7 +193,7 @@ export const en: Textes = {
     h1: 'Legal notice',
     sections: [
       ['Publisher', 'This website is published by Blackoune, as a personal, non-commercial project. Contact: see the Contact page.'],
-      ['Host', 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States.'],
+      ['Host', 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States. Phone: +1 877 448 4820.'],
       ['Licence', 'The OBS Dynamics software and this website’s code are released under the GPL-3.0 licence.'],
       ['Trademarks', 'OBS Dynamics is an independent project, not affiliated with the OBS Project. OBS Studio, Twitch, Steam, Spotify, Deezer, Apple Music and the game names mentioned belong to their respective owners.'],
     ],

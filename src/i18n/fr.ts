@@ -194,7 +194,7 @@ export const fr = {
     h1: 'Mentions légales',
     sections: [
       ['Éditeur', 'Ce site est édité par Blackoune, à titre personnel et non commercial. Contact : page « Nous contacter ».'],
-      ['Hébergeur', 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.'],
+      ['Hébergeur', 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Téléphone : +1 877 448 4820.'],
       ['Licence', 'Le logiciel OBS Dynamics et le code de ce site sont distribués sous licence GPL-3.0.'],
       ['Marques', 'OBS Dynamics est un projet indépendant, non affilié à OBS Project. OBS Studio, Twitch, Steam, Spotify, Deezer, Apple Music et les noms de jeux cités appartiennent à leurs propriétaires respectifs.'],
     ],
