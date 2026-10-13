@@ -15,7 +15,7 @@ export const en: Textes = {
     piedNote: 'Independent project, not affiliated with the OBS Project.',
     pied: {
       comparatif: 'Comparison', mentions: 'Legal notice', confidentialite: 'Privacy',
-      github: 'Source code on GitHub', licence: 'GPL-3.0 licence',
+      github: 'Source code on GitHub', licence: 'GPL-3.0 licence', signature: 'Code signing policy',
     },
     copier: 'Copy',
     copie: 'Copied',
@@ -134,6 +134,15 @@ export const en: Textes = {
       howto: 'Set up OBS Dynamics with OBS Studio',
     },
     sources: { titre: 'From source', intro: 'Requires Python 3.12 or later.', voirCode: 'View the code on GitHub' },
+    signature: {
+      titre: 'Code signing policy',
+      attribution: ['Free code signing provided by ', 'SignPath.io', ', certificate by ', 'SignPath Foundation', '.'],
+      roles: 'Roles',
+      auteurs: 'Committers and reviewers',
+      approbateurs: 'Approvers',
+      processus: 'Every release is built by GitHub Actions from the public source code, never on a personal computer, then approved by hand before it is signed and published.',
+      confidentialite: ['This program will not transfer any information to other networked systems unless specifically requested by the user. Details: ', 'privacy policy', '.'],
+    },
     mac: {
       titre: 'Mac version in the works',
       texte: 'OBS Dynamics currently relies on Windows-only features. There is no Mac version yet, and no Mac file is offered for download.',

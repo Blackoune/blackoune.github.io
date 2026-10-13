@@ -72,6 +72,7 @@ const ld = jsonLd && JSON.stringify(jsonLd).replaceAll('<', '\\u003c');
         <li><a href={lien(lang, 'mentions-legales')}>{t.commun.pied.mentions}</a></li>
         <li><a href={lien(lang, 'confidentialite')}>{t.commun.pied.confidentialite}</a></li>
         <li><a href={GITHUB_URL} rel="noopener noreferrer">{t.commun.pied.github}</a></li>
+        <li><a href={`${lien(lang, 'installation')}#signature`}>{t.commun.pied.signature}</a></li>
         <li><span>{t.commun.pied.licence}</span></li>
       </ul>
     </footer>

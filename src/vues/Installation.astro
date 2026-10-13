@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Commande from '../components/Commande.astro';
 import Texte from '../components/Texte.astro';
 import { derniereRelease } from '../data/release';
-import { TEXTES, type Lang } from '../i18n';
+import { lien, TEXTES, type Lang } from '../i18n';
 import { DISCORD, GITHUB_URL, REPO } from '../site';
 
 interface Props { lang: Lang }
@@ -122,6 +122,21 @@ const jsonLd = {
         <Commande etiquette="4" texte="python obs_dynamics.py" lang={lang} />
       </div>
       <p><a class="btn btn-secondaire" href={GITHUB_URL} rel="noopener noreferrer">{t.sources.voirCode}</a></p>
+    </section>
+
+    <!-- Exigée par SignPath Foundation : attribution, rôles, confidentialité. -->
+    <section class="bloc" aria-labelledby="titre-signature" id="signature">
+      <h2 id="titre-signature" class="bloc-titre">{t.signature.titre}</h2>
+      <p>
+        {t.signature.attribution[0]}<a href="https://about.signpath.io" rel="noopener noreferrer">{t.signature.attribution[1]}</a>{t.signature.attribution[2]}<a href="https://signpath.org" rel="noopener noreferrer">{t.signature.attribution[3]}</a>{t.signature.attribution[4]}
+      </p>
+      <p>{t.signature.processus}</p>
+      <h3>{t.signature.roles}</h3>
+      <ul>
+        <li>{t.signature.auteurs} : <a href="https://github.com/Blackoune" rel="noopener noreferrer">Blackoune</a></li>
+        <li>{t.signature.approbateurs} : <a href="https://github.com/Blackoune" rel="noopener noreferrer">Blackoune</a></li>
+      </ul>
+      <p>{t.signature.confidentialite[0]}<a href={lien(lang, 'confidentialite')}>{t.signature.confidentialite[1]}</a>{t.signature.confidentialite[2]}</p>
     </section>
   </section>
 
