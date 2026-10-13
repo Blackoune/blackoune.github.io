@@ -112,6 +112,10 @@ const barres = Array.from({ length: 48 }, (_, i) => `l${(i * 7) % 3}`);
     display: flex; flex-direction: column; justify-content: center;
   }
   .mw-card[data-layout='blocs'] .mw-wave { flex-direction: row; align-items: flex-end; height: auto; width: var(--bloc-wave); margin: 0; }
+  /* Bloc étroit : 24 barres qui se partagent la largeur, sans déborder. */
+  .mw-card[data-layout='blocs'] .mw-wave { gap: 1px; overflow: hidden; }
+  .mw-card[data-layout='blocs'] .mw-wave i { flex: 1 1 0; width: auto; min-width: 0; }
+  .mw-card[data-layout='blocs'] .mw-wave i:nth-child(n+25) { display: none; }
   .mw-card[data-layout='galerie'] { flex-direction: column; align-items: center; gap: var(--galerie-gap); }
   .mw-card[data-layout='galerie'] .mw-stack { align-items: flex-start; width: max-content; max-width: 100%; }
   .mw-card[data-layout='minimal'] { padding: var(--minimal-pad-y) var(--minimal-pad-x); }
@@ -139,10 +143,8 @@ const barres = Array.from({ length: 48 }, (_, i) => `l${(i * 7) % 3}`);
       --bloc-wave: 60px; --wave-h: 14px; padding: 1rem .5rem;
     }
     .mw-wave i:nth-child(n+25) { display: none; }
+    .mw-card[data-layout='blocs'] .mw-wave i:nth-child(n+13) { display: none; }
     .mw-controls { margin-left: 8px; gap: 8px; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .mw-disc { animation: none; }
-  }
 </style>

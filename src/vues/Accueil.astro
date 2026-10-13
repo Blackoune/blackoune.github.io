@@ -159,7 +159,7 @@ const jsonLd = {
         <h3>{m.biblio[1]}</h3>
         <p>{m.biblio[2]}</p>
       </div>
-      <div class="demo">
+      <div class="demo demo-biblio">
         <ul class="biblio" data-colonnes="4" data-motion="biblio">
           {jeux.map(([nom, actif]) => (
             <li class="jaquette">
@@ -398,6 +398,14 @@ const jsonLd = {
   .module-texte code { color: var(--texte); }
   .demo { border: 1px solid var(--ligne); border-radius: 1rem; background: var(--surface); overflow: hidden; }
 
+  /* Hauteur fixe : la grille change de colonnes à l'intérieur, la page ne bouge pas.
+     En 2 colonnes, les jaquettes dépassent et sont coupées en fondu en haut et en bas. */
+  .demo-biblio { position: relative; aspect-ratio: 1; display: grid; align-content: unsafe center; }
+  .demo-biblio::before, .demo-biblio::after {
+    content: ''; position: absolute; inset-inline: 0; height: 2.5rem; z-index: 1; pointer-events: none;
+  }
+  .demo-biblio::before { top: 0; background: linear-gradient(var(--surface), transparent); }
+  .demo-biblio::after { bottom: 0; background: linear-gradient(transparent, var(--surface)); }
   .biblio { list-style: none; margin: 0; padding: 1rem; display: grid; gap: .6rem; grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .biblio[data-colonnes='2'] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .biblio[data-colonnes='8'] { grid-template-columns: repeat(8, minmax(0, 1fr)); }

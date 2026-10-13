@@ -19,9 +19,6 @@
 /* Transitions entre pages : natives (View Transitions entre documents),
    aucun script. L'indicateur d'onglet glisse d'une page à l'autre. */
 @view-transition { navigation: auto; }
-@media (prefers-reduced-motion: reduce) {
-  @view-transition { navigation: none; }
-}
 
 *, *::before, *::after { box-sizing: border-box; }
 

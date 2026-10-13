@@ -1,7 +1,8 @@
 // Animations de la page Présentation. Chacune montre une vraie fonction du
 // logiciel ; aucune n'est décorative.
-//  - Sans JavaScript, ou avec « réduire les animations » : la page affiche
-//    l'état final de chaque démo (écrit dans le HTML), rien ne bouge.
+//  - Sans JavaScript : la page affiche l'état final de chaque démo (écrit
+//    dans le HTML). Le réglage système « réduire les animations » est ignoré
+//    volontairement : les démos montrent le logiciel, tout le monde doit les voir.
 //  - Sous 861 px de large : pas d'épinglage, animations simplifiées.
 //  - Une démo ne tourne que lorsqu'elle est visible.
 // Les styles passent par le CSSOM (element.style), autorisé par la CSP.
@@ -14,7 +15,6 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(Flip, ScrollTrigger, SplitText);
 
-const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = <T extends Element = HTMLElement>(sel: string, racine: ParentNode = document) => racine.querySelector<T>(sel);
 const $$ = <T extends Element = HTMLElement>(sel: string, racine: ParentNode = document) => [...racine.querySelectorAll<T>(sel)];
 
@@ -89,7 +89,6 @@ function demoWidget() {
       const v = 0.55 + 0.25 * Math.sin(temps * 3.1 + i * 0.45) + 0.2 * Math.sin(temps * 7.3 + i * 1.7);
       barre.style.transform = `scaleY(${Math.max(0.06, Math.min(1, v)).toFixed(3)})`;
     });
-  if (reduit) return onde(1);
 
   let n = 0;
   const boucle = gsap.timeline({ repeat: -1 });
@@ -134,7 +133,6 @@ function demoChat() {
     while (wrap.children.length > 5) wrap.firstElementChild!.remove();
   };
   for (let k = 0; k < 4; k++) ajouter();
-  if (reduit) return;
   const boucle = gsap.timeline({ repeat: -1 }).to({}, { duration: 1.7 }).call(ajouter);
   quandVisible(wrap, boucle);
 }
@@ -146,13 +144,13 @@ function accroche() {
   const titre = $('[data-motion-titre]');
   // Grand écran seulement : sur mobile, redécouper le titre repeint le plus
   // grand élément de la page et retarde son affichage final (LCP).
-  if (titre && !reduit && matchMedia('(min-width: 861px)').matches) {
+  if (titre && matchMedia('(min-width: 861px)').matches) {
     const mots = SplitText.create(titre, { type: 'words', mask: 'words' });
     gsap.from(mots.words, { yPercent: 110, duration: 0.9, ease: 'expo.out', stagger: 0.06, delay: 0.1 });
   }
 
   const regie = $('[data-motion="regie"]');
-  if (!regie || reduit) return;
+  if (!regie) return;
   const ecran = $('.ecran', regie)!;
   const scan = $('.ecran-scan', regie)!;
   const statut = $('[data-statut]', regie)!;
@@ -182,7 +180,7 @@ function accroche() {
 function mecanisme(mm: gsap.MatchMedia) {
   const section = $('[data-motion="mecanisme"]');
   if (!section) return;
-  mm.add('(min-width: 861px) and (prefers-reduced-motion: no-preference)', () => {
+  mm.add('(min-width: 861px)', () => {
     section.classList.add('epingle');
     const panneaux = $$('[data-panneau]', section);
     const temps = $$('[data-temps]', section);
@@ -215,12 +213,26 @@ function mecanisme(mm: gsap.MatchMedia) {
 // --------------------------------------------------------------------------
 function bibliotheque() {
   const grille = $('[data-motion="biblio"]');
-  if (!grille || reduit) return;
+  if (!grille) return;
   const cycle = ['8', '2', '4'];
   let n = 0;
+  const jaquettes = $$('.jaquette', grille);
   const boucle = gsap.timeline({ repeat: -1 }).to({}, { duration: 2.4 }).call(() => {
-    const etat = Flip.getState($$('.jaquette', grille));
-    grille.dataset.colonnes = cycle[n++ % cycle.length];
+    const suivant = cycle[n++ % cycle.length];
+    // De la ligne (8) aux grandes jaquettes (2) : la ligne tombe une à une,
+    // puis la nouvelle grille monte du bas du cadre.
+    if (suivant === '2') {
+      const chute = grille.parentElement!.clientHeight;
+      // La boucle attend la fin de la transition, plus longue que sa pause.
+      boucle.pause();
+      gsap.timeline({ onComplete: () => { boucle.play(); } })
+        .to(jaquettes, { y: chute, duration: 1.2, ease: 'sine.inOut', stagger: 0.15 })
+        .call(() => { grille.dataset.colonnes = suivant; }, undefined, '+=0.15')
+        .fromTo(jaquettes, { y: chute }, { y: 0, immediateRender: false, duration: 1, ease: 'power2.out', stagger: 0.15, clearProps: 'transform' });
+      return;
+    }
+    const etat = Flip.getState(jaquettes);
+    grille.dataset.colonnes = suivant;
     Flip.from(etat, { duration: 0.75, ease: 'power3.inOut', stagger: 0.02 });
   });
   quandVisible(grille, boucle);
@@ -231,7 +243,7 @@ function bibliotheque() {
 // --------------------------------------------------------------------------
 function hotkeys() {
   const demo = $('[data-motion="hotkeys"]');
-  if (!demo || reduit) return;
+  if (!demo) return;
   const touches = $$('.touche', demo);
   const etat = $('[data-etat-force]', demo)!;
   const presser = (i: number) => () => {
@@ -256,7 +268,6 @@ function raccourci() {
     touches.forEach((t) => t.classList.toggle('enfoncee', oui));
     cache.classList.toggle('visible', oui);
   };
-  if (reduit) return tenir(true)();
   const boucle = gsap.timeline({ repeat: -1 })
     .to({}, { duration: 1.2 }).call(tenir(true))
     .to({}, { duration: 1.8 }).call(tenir(false));
@@ -268,7 +279,7 @@ function raccourci() {
 // --------------------------------------------------------------------------
 function langues() {
   const demo = $('[data-motion="langues"]');
-  if (!demo || reduit) return;
+  if (!demo) return;
   const mot = $('[data-mot]', demo)!;
   const items = $$('li', demo);
   let n = 0;
@@ -285,12 +296,10 @@ function langues() {
 }
 
 // --------------------------------------------------------------------------
-if (!reduit) {
-  const lenis = new Lenis({ autoRaf: false });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((t) => lenis.raf(t * 1000));
-  gsap.ticker.lagSmoothing(0);
-}
+const lenis = new Lenis({ autoRaf: false });
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((t) => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
 
 accroche();
 mecanisme(gsap.matchMedia());
