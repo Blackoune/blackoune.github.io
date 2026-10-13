@@ -13,6 +13,7 @@ export interface Release {
   signe: boolean;
   virustotal: string;
   telechargement: string;
+  fichier: string;       // nom du fichier téléchargé (installateur, sinon exe seul)
 }
 
 const API = `https://api.github.com/repos/${REPO}/releases/latest`;
@@ -36,6 +37,7 @@ async function charger(): Promise<Release | null> {
       signe: false,
       virustotal: 'https://www.virustotal.com/',
       telechargement: '#',
+      fichier: 'OBS-Dynamics-Setup.exe',
     };
   }
   const reponse = await lire(API, 'application/vnd.github+json');
@@ -44,15 +46,21 @@ async function charger(): Promise<Release | null> {
   if (!reponse.ok) throw new Error(`API GitHub : ${reponse.status} sur ${API}`);
   const r = await reponse.json();
 
-  const exe = r.assets.find((a: { name: string }) => a.name === 'Dynamics.exe');
-  const sommes = r.assets.find((a: { name: string }) => a.name === 'SHA256SUMS.txt');
-  if (!exe || !sommes) throw new Error(`Release ${r.tag_name} incomplète : Dynamics.exe ou SHA256SUMS.txt absent`);
+  type Asset = { name: string; size: number; browser_download_url: string };
+  const trouver = (nom: string) => r.assets.find((a: Asset) => a.name === nom) as Asset | undefined;
+  // L'installateur s'il existe ; les premières releases n'ont que l'exe seul.
+  const exe = trouver('OBS-Dynamics-Setup.exe') ?? trouver('Dynamics.exe');
+  const sommes = trouver('SHA256SUMS.txt');
+  if (!exe || !sommes) throw new Error(`Release ${r.tag_name} incomplète : exécutable ou SHA256SUMS.txt absent`);
 
   const fichier = await lire(sommes.browser_download_url, 'application/octet-stream');
   if (!fichier.ok) throw new Error(`SHA256SUMS.txt : ${fichier.status}`);
-  const ligne = (await fichier.text()).split('\n').find((l) => /\sDynamics\.exe$/.test(l.trim()));
-  const sha256 = ligne?.trim().split(/\s+/)[0] ?? '';
-  if (!/^[0-9a-f]{64}$/.test(sha256)) throw new Error('SHA256SUMS.txt : empreinte de Dynamics.exe illisible');
+  const lignes = (await fichier.text()).split('\n').map((l) => l.trim().split(/\s+/));
+  const empreinte = (nom: string) => lignes.find(([, f]) => f === nom || f === `*${nom}`)?.[0] ?? '';
+  const sha256 = empreinte(exe.name);
+  if (!/^[0-9a-f]{64}$/.test(sha256)) throw new Error(`SHA256SUMS.txt : empreinte de ${exe.name} illisible`);
+  // VirusTotal reçoit Dynamics.exe (release.yml) : son rapport porte cette empreinte.
+  const shaVt = empreinte('Dynamics.exe') || sha256;
 
   return {
     version: r.tag_name,
@@ -60,8 +68,9 @@ async function charger(): Promise<Release | null> {
     taille: exe.size,
     sha256,
     signe: !/non signé/i.test(r.body ?? ''),
-    virustotal: `https://www.virustotal.com/gui/file/${sha256}`,
-    telechargement: `https://github.com/${REPO}/releases/latest/download/Dynamics.exe`,
+    virustotal: `https://www.virustotal.com/gui/file/${shaVt}`,
+    telechargement: `https://github.com/${REPO}/releases/latest/download/${exe.name}`,
+    fichier: exe.name,
   };
 }
 

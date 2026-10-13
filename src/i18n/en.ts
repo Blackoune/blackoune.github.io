@@ -103,7 +103,7 @@ export const en: Textes = {
     chapo: 'One file, nothing to install. Download, verify, run.',
     osAria: 'Operating system',
     windowsTitre: 'Windows 10 and 11',
-    telecharger: 'Download Dynamics.exe',
+    telecharger: 'Download OBS Dynamics',
     version: 'Version', publiee: 'Released', taille: 'Size', mo: 'MB',
     rapportVt: 'VirusTotal report for this version',
     bientot: 'First release coming soon.',
@@ -112,7 +112,7 @@ export const en: Textes = {
     smartscreen: {
       titre: 'Windows warning on first launch',
       intro: 'The file is not signed with a certificate yet, so Windows SmartScreen shows “Windows protected your PC”.',
-      etapes: ['Click **More info**.', 'Check that the file name is `Dynamics.exe`.', 'Click **Run anyway**.'],
+      etapes: ['Click **More info**.', 'Check that the file name is `OBS-Dynamics-Setup.exe`.', 'Click **Run anyway**.'],
       apres: 'Before that, you can check the file is genuine: see below.',
     },
     verifier: {

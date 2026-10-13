@@ -11,6 +11,7 @@ const { lang } = Astro.props;
 const t = TEXTES[lang].installation;
 const locale = TEXTES[lang].dateLocale;
 const release = await derniereRelease();
+const fichier = release?.fichier ?? 'OBS-Dynamics-Setup.exe';
 const date = release?.date.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
 const taille = release && `${(release.taille / 1024 / 1024).toLocaleString(locale, { maximumFractionDigits: 1 })} ${t.mo}`;
 const sansMarques = (s: string) => s.replace(/\*\*|`/g, '');
@@ -87,13 +88,13 @@ const jsonLd = {
         <div>
           <h3>{t.verifier.empreinteTitre}</h3>
           <p>{t.verifier.empreinteIntro}</p>
-          <Commande texte="Get-FileHash .\Dynamics.exe -Algorithm SHA256" lang={lang} />
+          <Commande texte={`Get-FileHash .\\${fichier} -Algorithm SHA256`} lang={lang} />
           <p class="texte-doux">{t.verifier.empreinteApres}</p>
         </div>
         <div>
           <h3>{t.verifier.attestationTitre}</h3>
           <p>{t.verifier.attestationIntro[0]}<a href="https://cli.github.com/" rel="noopener noreferrer">{t.verifier.attestationIntro[1]}</a>{t.verifier.attestationIntro[2]}</p>
-          <Commande texte={`gh attestation verify .\\Dynamics.exe --repo ${REPO}`} lang={lang} />
+          <Commande texte={`gh attestation verify .\\${fichier} --repo ${REPO}`} lang={lang} />
           <p class="texte-doux">{t.verifier.attestationApres}</p>
         </div>
       </div>

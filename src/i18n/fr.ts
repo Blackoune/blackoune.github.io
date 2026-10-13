@@ -104,7 +104,7 @@ export const fr = {
     chapo: 'Un seul fichier, rien à installer. Téléchargez, vérifiez, lancez.',
     osAria: "Système d'exploitation",
     windowsTitre: 'Windows 10 et 11',
-    telecharger: 'Télécharger Dynamics.exe',
+    telecharger: 'Télécharger OBS Dynamics',
     version: 'Version', publiee: 'Publiée le', taille: 'Taille', mo: 'Mo',
     rapportVt: 'Rapport VirusTotal de cette version',
     bientot: 'Première version bientôt disponible.',
@@ -113,7 +113,7 @@ export const fr = {
     smartscreen: {
       titre: 'Avertissement de Windows au premier lancement',
       intro: "Le fichier n'est pas encore signé par un certificat. Windows SmartScreen affiche donc « Windows a protégé votre ordinateur ».",
-      etapes: ['Cliquez sur **Informations complémentaires**.', 'Vérifiez que le nom indiqué est bien `Dynamics.exe`.', 'Cliquez sur **Exécuter quand même**.'],
+      etapes: ['Cliquez sur **Informations complémentaires**.', 'Vérifiez que le nom indiqué est bien `OBS-Dynamics-Setup.exe`.', 'Cliquez sur **Exécuter quand même**.'],
       apres: 'Avant cela, vous pouvez vérifier que le fichier est authentique : voir ci-dessous.',
     },
     verifier: {
