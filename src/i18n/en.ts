@@ -74,7 +74,7 @@ export const en: Textes = {
       titre: 'Your PC, your data',
       items: [
         ['100% local', 'Everything runs on your PC. No server, no account to create.'],
-        ['No telemetry', 'The only connections go to OBS, to Twitch if you use the chat, and to game cover art.'],
+        ['No telemetry', 'The only connections go to OBS, to Twitch if you use the chat, to game cover art, and to GitHub at startup to check for updates.'],
         ['Encrypted credentials', 'Your OBS password is encrypted by Windows and tied to your account.'],
         ['Open source', 'GPL-3.0 licence: the whole code base is readable on GitHub.'],
         ['Verifiable executable', 'Built by GitHub, SHA-256 checksum published.'],
@@ -123,6 +123,12 @@ export const en: Textes = {
       attestationTitre: '2. Built by GitHub, from the public code',
       attestationIntro: ['With the ', 'GitHub CLI', ':'],
       attestationApres: 'The command shows the exact workflow and commit that produced this file.',
+    },
+    miseAJour: {
+      titre: 'Updating',
+      intro: 'OBS Dynamics tells you at startup when a new version is available. To install it:',
+      etapes: ['Close OBS Dynamics.', 'Download the new installer from this page.', 'Run it: it replaces the old version.'],
+      apres: 'Your settings, reference captures and credentials are kept.',
     },
     premiersPas: {
       titre: 'Getting started in 3 steps',
@@ -215,7 +221,7 @@ export const en: Textes = {
     sections: [
       ['This website', 'No cookies, no analytics, no forms, no resources loaded from other websites. The FAQ questionnaire sends nothing: your answers stay in your browser.'],
       ['Hosting', 'The website is hosted on GitHub Pages. Like any web server, GitHub logs visitors’ IP addresses, under its own privacy policy.'],
-      ['The software', 'OBS Dynamics runs locally and contains no telemetry. It only connects to OBS, to Twitch if you use the chat, and to cover art services (Steam, RAWG).'],
+      ['The software', 'OBS Dynamics runs locally and contains no telemetry. It only connects to OBS, to Twitch if you use the chat, to cover art services (Steam, RAWG), and to GitHub at startup to check for a new version (no data sent).'],
     ],
     lienGithub: 'GitHub privacy statement',
   },

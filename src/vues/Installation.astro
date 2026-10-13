@@ -112,6 +112,15 @@ const jsonLd = {
       </ol>
     </section>
 
+    <section class="bloc" aria-labelledby="titre-mise-a-jour" id="mise-a-jour">
+      <h2 id="titre-mise-a-jour" class="bloc-titre">{t.miseAJour.titre}</h2>
+      <p>{t.miseAJour.intro}</p>
+      <ol class="etapes-courtes">
+        {t.miseAJour.etapes.map((e) => <li>{e}</li>)}
+      </ol>
+      <p class="texte-doux">{t.miseAJour.apres}</p>
+    </section>
+
     <section class="bloc" aria-labelledby="titre-sources" id="sources">
       <h2 id="titre-sources" class="bloc-titre">{t.sources.titre}</h2>
       <p>{t.sources.intro}</p>

@@ -75,7 +75,7 @@ export const fr = {
       titre: 'Votre PC, vos données',
       items: [
         ['100 % local', 'Tout tourne sur votre PC. Aucun serveur, aucun compte à créer.'],
-        ['Aucune télémétrie', 'Les seules connexions vont vers OBS, vers Twitch si vous utilisez le chat, et vers les jaquettes de jeux.'],
+        ['Aucune télémétrie', 'Les seules connexions vont vers OBS, vers Twitch si vous utilisez le chat, vers les jaquettes de jeux, et vers GitHub au démarrage pour vérifier les mises à jour.'],
         ['Identifiants chiffrés', 'Le mot de passe OBS est chiffré par Windows et lié à votre compte.'],
         ['Code ouvert', 'Licence GPL-3.0 : le code entier est lisible sur GitHub.'],
         ['Exécutable vérifiable', 'Construit par GitHub, empreinte SHA-256 publiée.'],
@@ -124,6 +124,12 @@ export const fr = {
       attestationTitre: '2. Construit par GitHub, à partir du code public',
       attestationIntro: ['Avec la ', 'CLI GitHub', ' :'],
       attestationApres: 'La commande indique le workflow et le commit exacts qui ont produit ce fichier.',
+    },
+    miseAJour: {
+      titre: 'Mettre à jour',
+      intro: "OBS Dynamics vous prévient au démarrage quand une nouvelle version est disponible. Pour l'installer :",
+      etapes: ['Fermez OBS Dynamics.', 'Téléchargez le nouvel installeur depuis cette page.', "Lancez-le : il remplace l'ancienne version."],
+      apres: 'Vos réglages, captures et identifiants sont conservés.',
     },
     premiersPas: {
       titre: 'Premiers pas en 3 étapes',
@@ -216,7 +222,7 @@ export const fr = {
     sections: [
       ['Ce site', "Aucun cookie, aucune mesure d'audience, aucun formulaire, aucune ressource chargée depuis un autre site. Le questionnaire de la FAQ ne transmet rien : vos réponses restent dans votre navigateur."],
       ['Hébergement', 'Le site est hébergé par GitHub Pages. Comme tout serveur web, GitHub enregistre les adresses IP des visiteurs, selon sa propre politique de confidentialité.'],
-      ['Le logiciel', "OBS Dynamics fonctionne en local et ne contient aucune télémétrie. Il se connecte seulement à OBS, à Twitch si vous utilisez le chat, et aux services de jaquettes (Steam, RAWG)."],
+      ['Le logiciel', "OBS Dynamics fonctionne en local et ne contient aucune télémétrie. Il se connecte seulement à OBS, à Twitch si vous utilisez le chat, aux services de jaquettes (Steam, RAWG), et à GitHub au démarrage pour vérifier s'il existe une nouvelle version (aucune donnée envoyée)."],
     ],
     lienGithub: 'Politique de confidentialité de GitHub',
   },
