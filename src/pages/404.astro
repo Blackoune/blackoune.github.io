@@ -17,17 +17,72 @@ import { CSP, url } from '../site';
   </head>
   <body>
     <main class="introuvable">
-      <p class="surtitre">404</p>
+      <p class="surtitre">4<button type="button" class="zero" data-snake aria-label="0, lancer le jeu Snake">0</button>4</p>
       <h1 class="titre-page">Page introuvable</h1>
       <p class="chapo" lang="en">Page not found.</p>
       <p><a class="btn btn-primaire" href={url()}>OBS Dynamics</a></p>
     </main>
+    <div class="snake" role="dialog" aria-modal="true" aria-label="Snake" tabindex="-1" hidden>
+      <div class="snake-barre">
+        <p class="snake-score">Score <span data-score>0</span></p>
+        <p class="snake-aide">Flèches ou glisser du doigt</p>
+        <button type="button" class="btn btn-secondaire" data-fermer>Fermer</button>
+      </div>
+      <canvas></canvas>
+      <div class="snake-fin" hidden>
+        <p aria-live="polite" data-message></p>
+        <button type="button" class="btn btn-primaire" data-rejouer>Rejouer</button>
+      </div>
+    </div>
     <script>
       import '../scripts/ancienne-adresse';
+      import '../scripts/snake';
     </script>
   </body>
 </html>
 
 <style>
-  .introuvable { padding: clamp(4rem, 15vh, 8rem) 0 2rem; }
+  .introuvable {
+    min-height: 100dvh; padding: 2rem 1rem;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+  }
+  .introuvable .surtitre { font-size: clamp(3rem, 12vw, 6rem); line-height: 1; margin-bottom: 1rem; }
+  .introuvable .chapo { margin-inline: auto; }
+
+  /* Le « 0 » cache le Snake : même allure que le reste du 404. */
+  .zero {
+    position: relative;
+    font: inherit; color: inherit; letter-spacing: inherit;
+    background: none; border: 0; padding: 0; cursor: pointer;
+    transition: color .2s;
+  }
+  .zero:hover { color: var(--texte); }
+  /* Zone de clic d'au moins 44 px sur mobile. */
+  .zero::after { content: ''; position: absolute; inset: -.5rem -.25rem; }
+
+  .snake {
+    position: fixed; inset: 0; z-index: 10;
+    display: flex; flex-direction: column;
+    background: var(--fond); touch-action: none; outline: none;
+  }
+  .snake[hidden] { display: none; }
+  .snake-barre {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: .75rem var(--gouttiere); border-bottom: 1px solid var(--ligne);
+  }
+  .snake-barre p { margin: 0; }
+  .snake-score { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .snake-aide { color: var(--texte-doux); font-size: .9rem; }
+  .snake canvas { flex: 1; min-height: 0; width: 100%; display: block; }
+  .snake-fin {
+    position: absolute; top: 50%; left: 50%; translate: -50% -50%;
+    width: min(26rem, calc(100% - 2rem)); padding: 1.25rem;
+    background: var(--surface); border: 1px solid var(--ligne); border-radius: 6px;
+    display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    text-align: center;
+  }
+  .snake-fin[hidden] { display: none; }
+  .snake-fin p { margin: 0; font-size: 1.1rem; text-wrap: balance; }
+  @media (max-width: 30rem) { .snake-aide { display: none; } }
 </style>
