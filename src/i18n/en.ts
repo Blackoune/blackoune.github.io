@@ -16,6 +16,7 @@ export const en: Textes = {
     pied: {
       comparatif: 'Comparison', mentions: 'Legal notice', confidentialite: 'Privacy',
       github: 'Source code on GitHub', licence: 'GPL-3.0 licence', signature: 'Code signing policy',
+      projet: 'The project', contact: 'Contact', legal: 'Legal', discord: 'Discord', credit: 'Designed by',
     },
     copier: 'Copy',
     copie: 'Copied',
@@ -210,6 +211,7 @@ export const en: Textes = {
       ['Publisher', 'This website is published by Blackoune, as a personal, non-commercial project. Contact: see the Contact page.'],
       ['Host', 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States. Phone: +1 877 448 4820.'],
       ['Licence', 'The OBS Dynamics software and this website’s code are released under the GPL-3.0 licence.'],
+      ['Liability', 'The software is provided as is, without warranty, as stated in the GPL-3.0 licence. You use it at your own risk.'],
       ['Trademarks', 'OBS Dynamics is an independent project, not affiliated with the OBS Project. OBS Studio, Twitch, Steam, Spotify, Deezer, Apple Music and the game names mentioned belong to their respective owners.'],
     ],
   },
@@ -222,6 +224,7 @@ export const en: Textes = {
       ['This website', 'No cookies, no analytics, no forms, no resources loaded from other websites. The FAQ questionnaire sends nothing: your answers stay in your browser.'],
       ['Hosting', 'The website is hosted on GitHub Pages. Like any web server, GitHub logs visitors’ IP addresses, under its own privacy policy.'],
       ['The software', 'OBS Dynamics runs locally and contains no telemetry. It only connects to OBS, to Twitch if you use the chat, to cover art services (Steam, RAWG), and to GitHub at startup to check for a new version (no data sent).'],
+      ['External links', 'Links to Discord, GitHub and Twitch lead to third-party services, governed by their own privacy policies. This website embeds none of their content.'],
     ],
     lienGithub: 'GitHub privacy statement',
   },

@@ -17,6 +17,7 @@ export const fr = {
     pied: {
       comparatif: 'Comparatif', mentions: 'Mentions légales', confidentialite: 'Confidentialité',
       github: 'Code source sur GitHub', licence: 'Licence GPL-3.0', signature: 'Signature du code',
+      projet: 'Le projet', contact: 'Contact', legal: 'Informations légales', discord: 'Discord', credit: 'Conçu par',
     },
     copier: 'Copier',
     copie: 'Copié',
@@ -211,6 +212,7 @@ export const fr = {
       ['Éditeur', 'Ce site est édité par Blackoune, à titre personnel et non commercial. Contact : page « Nous contacter ».'],
       ['Hébergeur', 'GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Téléphone : +1 877 448 4820.'],
       ['Licence', 'Le logiciel OBS Dynamics et le code de ce site sont distribués sous licence GPL-3.0.'],
+      ['Responsabilité', "Le logiciel est fourni tel quel, sans garantie, comme le prévoit la licence GPL-3.0. Son utilisation se fait sous la responsabilité de l'utilisateur."],
       ['Marques', 'OBS Dynamics est un projet indépendant, non affilié à OBS Project. OBS Studio, Twitch, Steam, Spotify, Deezer, Apple Music et les noms de jeux cités appartiennent à leurs propriétaires respectifs.'],
     ],
   },
@@ -223,6 +225,7 @@ export const fr = {
       ['Ce site', "Aucun cookie, aucune mesure d'audience, aucun formulaire, aucune ressource chargée depuis un autre site. Le questionnaire de la FAQ ne transmet rien : vos réponses restent dans votre navigateur."],
       ['Hébergement', 'Le site est hébergé par GitHub Pages. Comme tout serveur web, GitHub enregistre les adresses IP des visiteurs, selon sa propre politique de confidentialité.'],
       ['Le logiciel', "OBS Dynamics fonctionne en local et ne contient aucune télémétrie. Il se connecte seulement à OBS, à Twitch si vous utilisez le chat, aux services de jaquettes (Steam, RAWG), et à GitHub au démarrage pour vérifier s'il existe une nouvelle version (aucune donnée envoyée)."],
+      ['Liens externes', "Les liens vers Discord, GitHub et Twitch mènent à des services tiers, soumis à leurs propres règles de confidentialité. Ce site n'intègre aucun de leurs contenus."],
     ],
     lienGithub: 'Politique de confidentialité de GitHub',
   },

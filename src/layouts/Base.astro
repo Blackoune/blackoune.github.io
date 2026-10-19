@@ -4,7 +4,7 @@ import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import { GUIDES, GUIDES_CLES, LANGUES, lien, TEXTES, type Lang, type Page } from '../i18n';
-import { CSP, GITHUB_URL, url } from '../site';
+import { CSP, DISCORD, GITHUB_URL, TWITCH_URL, url } from '../site';
 
 interface Props {
   lang: Lang;
@@ -16,6 +16,7 @@ interface Props {
 }
 const { lang, page, title, description, jsonLd } = Astro.props;
 const t = TEXTES[lang];
+const p = t.commun.pied;
 const absolu = (chemin: string) => new URL(chemin, Astro.site).href;
 const canonique = absolu(lien(lang, page));
 const image = absolu(url('og.png'));
@@ -60,21 +61,45 @@ const ld = jsonLd && JSON.stringify(jsonLd).replaceAll('<', '\\u003c');
       <slot />
     </main>
     <footer class="pied">
-      <p class="pied-note">{t.commun.piedNote}</p>
-      <nav class="pied-guides" aria-label={t.commun.guides}>
-        <p class="pied-titre">{t.commun.guides}</p>
-        <ul>
-          {GUIDES_CLES.map((cle) => <li><a href={lien(lang, cle)}>{GUIDES[lang][cle].court}</a></li>)}
-        </ul>
-      </nav>
-      <ul class="pied-liens">
-        <li><a href={lien(lang, 'comparatif')}>{t.commun.pied.comparatif}</a></li>
-        <li><a href={lien(lang, 'mentions-legales')}>{t.commun.pied.mentions}</a></li>
-        <li><a href={lien(lang, 'confidentialite')}>{t.commun.pied.confidentialite}</a></li>
-        <li><a href={GITHUB_URL} rel="noopener noreferrer">{t.commun.pied.github}</a></li>
-        <li><a href={`${lien(lang, 'installation')}#signature`}>{t.commun.pied.signature}</a></li>
-        <li><span>{t.commun.pied.licence}</span></li>
-      </ul>
+      <div class="pied-colonnes">
+        <nav aria-label={t.commun.guides}>
+          <p class="pied-titre">{t.commun.guides}</p>
+          <ul>
+            {GUIDES_CLES.map((cle) => <li><a href={lien(lang, cle)}>{GUIDES[lang][cle].court}</a></li>)}
+          </ul>
+        </nav>
+        <nav aria-label={p.projet}>
+          <p class="pied-titre">{p.projet}</p>
+          <ul>
+            <li><a href={lien(lang, 'installation')}>{t.commun.nav.installation}</a></li>
+            <li><a href={lien(lang, 'comparatif')}>{p.comparatif}</a></li>
+            <li><a href={`${lien(lang, 'installation')}#signature`}>{p.signature}</a></li>
+            <li><a href={GITHUB_URL} rel="noopener noreferrer">{p.github}</a></li>
+          </ul>
+        </nav>
+        <nav aria-label={p.contact}>
+          <p class="pied-titre">{p.contact}</p>
+          <ul>
+            <li><a href={lien(lang, 'contact')}>{t.commun.nav.contact}</a></li>
+            {DISCORD.general && <li><a href={DISCORD.general} rel="noopener noreferrer">{p.discord}</a></li>}
+          </ul>
+        </nav>
+        <nav aria-label={p.legal}>
+          <p class="pied-titre">{p.legal}</p>
+          <ul>
+            <li><a href={lien(lang, 'mentions-legales')}>{p.mentions}</a></li>
+            <li><a href={lien(lang, 'confidentialite')}>{p.confidentialite}</a></li>
+            <li>{p.licence}</li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pied-bas">
+        <p>{t.commun.piedNote}</p>
+        <div class="pied-signature">
+          <p>{p.credit} <span class="pied-auteur">Blackoune</span></p>
+          <p><a href={TWITCH_URL} rel="noopener noreferrer">Twitch Blackoune</a></p>
+        </div>
+      </div>
     </footer>
   </body>
 </html>

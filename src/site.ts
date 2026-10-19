@@ -2,6 +2,7 @@
 
 export const REPO = 'Blackoune/OBS-Dynamics';
 export const GITHUB_URL = `https://github.com/${REPO}`;
+export const TWITCH_URL = 'https://www.twitch.tv/blackoune';
 
 // Invitations Discord permanentes, créées par Blackoune (plan §13.2 n° 2).
 // Tant qu'une valeur est vide, le bouton correspondant n'est pas affiché :
