@@ -24,6 +24,16 @@
           ]
         },
         {
+          "id": "sha256",
+          "title": "C'est quoi le « SHA-256 » affiché sous le bouton de téléchargement ?",
+          "steps": [
+            "C'est l'empreinte du fichier : une suite de 64 caractères calculée à partir de son contenu, comme une empreinte digitale.",
+            "Si un seul octet du fichier change (téléchargement abîmé, fichier modifié par quelqu'un), l'empreinte change complètement.",
+            "Calculez l'empreinte du fichier reçu et comparez-la à celle de la page Installation : si elles sont identiques, vous avez exactement le fichier publié (voir « Vérifier que le fichier est authentique »).",
+            "Cette vérification est facultative : elle sert à ceux qui veulent s'assurer que le fichier n'a pas été modifié."
+          ]
+        },
+        {
           "id": "verifier-fichier",
           "title": "Vérifier que le fichier est authentique",
           "steps": [

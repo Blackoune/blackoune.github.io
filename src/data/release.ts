@@ -14,7 +14,17 @@ export interface Release {
   virustotal: string;
   telechargement: string;
   fichier: string;       // nom du fichier téléchargé (installateur, sinon exe seul)
+  mac: FichierMac | null; // null tant qu'aucune release ne contient le .dmg
 }
+
+export interface FichierMac {
+  fichier: string;
+  taille: number;
+  sha256: string;
+  telechargement: string;
+}
+
+export const DMG = 'OBS-Dynamics.dmg';
 
 const API = `https://api.github.com/repos/${REPO}/releases/latest`;
 
@@ -38,6 +48,12 @@ async function charger(): Promise<Release | null> {
       virustotal: 'https://www.virustotal.com/',
       telechargement: '#',
       fichier: 'OBS-Dynamics-Setup.exe',
+      mac: {
+        fichier: DMG,
+        taille: 81_264_640,
+        sha256: '0'.repeat(64),
+        telechargement: '#',
+      },
     };
   }
   const reponse = await lire(API, 'application/vnd.github+json');
@@ -62,6 +78,11 @@ async function charger(): Promise<Release | null> {
   // VirusTotal reçoit Dynamics.exe (release.yml) : son rapport porte cette empreinte.
   const shaVt = empreinte('Dynamics.exe') || sha256;
 
+  // Le .dmg est facultatif ; présent, il doit avoir son empreinte, comme l'exe.
+  const dmg = trouver(DMG);
+  const shaDmg = dmg ? empreinte(DMG) : '';
+  if (dmg && !/^[0-9a-f]{64}$/.test(shaDmg)) throw new Error(`SHA256SUMS.txt : empreinte de ${DMG} illisible`);
+
   return {
     version: r.tag_name,
     date: new Date(r.published_at),
@@ -71,6 +92,12 @@ async function charger(): Promise<Release | null> {
     virustotal: `https://www.virustotal.com/gui/file/${shaVt}`,
     telechargement: `https://github.com/${REPO}/releases/latest/download/${exe.name}`,
     fichier: exe.name,
+    mac: dmg ? {
+      fichier: DMG,
+      taille: dmg.size,
+      sha256: shaDmg,
+      telechargement: `https://github.com/${REPO}/releases/latest/download/${DMG}`,
+    } : null,
   };
 }
 

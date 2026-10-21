@@ -24,6 +24,16 @@
           ]
         },
         {
+          "id": "sha256",
+          "title": "What is the “SHA-256” shown under the download button?",
+          "steps": [
+            "It is the file's checksum: a 64-character string computed from its content, like a fingerprint.",
+            "If a single byte of the file changes (corrupted download, file tampered with), the checksum changes completely.",
+            "Compute the checksum of the file you received and compare it with the one on the Install page: if they match, you have exactly the published file (see “Check the file is genuine”).",
+            "This check is optional: it is for anyone who wants to make sure the file was not modified."
+          ]
+        },
+        {
           "id": "verifier-fichier",
           "title": "Check the file is genuine",
           "steps": [

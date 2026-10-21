@@ -14,6 +14,8 @@ const release = await derniereRelease();
 const fichier = release?.fichier ?? 'OBS-Dynamics-Setup.exe';
 const date = release?.date.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
 const taille = release && `${(release.taille / 1024 / 1024).toLocaleString(locale, { maximumFractionDigits: 1 })} ${t.mo}`;
+const mac = release?.mac;
+const tailleMac = mac && `${(mac.taille / 1024 / 1024).toLocaleString(locale, { maximumFractionDigits: 1 })} ${t.mo}`;
 const sansMarques = (s: string) => s.replace(/\*\*|`/g, '');
 
 const jsonLd = {
@@ -26,7 +28,7 @@ const jsonLd = {
   })),
 };
 ---
-<Base lang={lang} page="installation" title={t.titre} description={t.description} jsonLd={jsonLd}>
+<Base lang={lang} page="installation" title={mac ? t.mac.pageTitre : t.titre} description={mac ? t.mac.pageDescription : t.description} jsonLd={jsonLd}>
   <header class="entete">
     <p class="surtitre">{t.surtitre}</p>
     <h1 class="titre-page">{t.h1}</h1>
@@ -53,6 +55,7 @@ const jsonLd = {
               <div class="fiche-large">
                 <dt>SHA-256</dt>
                 <dd><Commande texte={release.sha256} lang={lang} /></dd>
+                <dd class="aide-sha">{t.shaAide[0]}<a href={`${lien(lang, 'contact')}#faq/installation/sha256`}>{t.shaAide[1]}</a></dd>
               </div>
             </dl>
             <p class="lien-rapport">
@@ -71,7 +74,7 @@ const jsonLd = {
       </div>
 
       {(!release || !release.signe) && (
-        <aside class="carte smartscreen" aria-labelledby="titre-smartscreen">
+        <aside class="carte alerte" aria-labelledby="titre-smartscreen">
           <h2 id="titre-smartscreen" class="carte-titre">{t.smartscreen.titre}</h2>
           <p>{t.smartscreen.intro}</p>
           <ol class="etapes-courtes">
@@ -151,14 +154,100 @@ const jsonLd = {
 
   <!-- ======================= Mac ======================= -->
   <section id="panneau-mac" class="panneau" role="tabpanel" aria-labelledby="onglet-mac" data-os-panneau="mac">
-    <div class="carte carte-mac">
-      <p class="surtitre">macOS</p>
-      <h2 class="carte-titre">{t.mac.titre}</h2>
-      <p>{t.mac.texte}</p>
-      {DISCORD.general && (
-        <a class="btn btn-primaire" href={DISCORD.general} rel="noopener noreferrer">{t.mac.prevenir}</a>
-      )}
-    </div>
+    {mac && release ? (
+      <>
+        <div class="telechargement">
+          <div class="carte carte-principale">
+            <h2 class="carte-titre">{t.mac.carteTitre}</h2>
+            <a class="btn btn-primaire btn-grand" href={mac.telechargement}>{t.telecharger}</a>
+            <dl class="fiche">
+              <div><dt>{t.version}</dt><dd class="mono">{release.version}</dd></div>
+              <div><dt>{t.publiee}</dt><dd>{date}</dd></div>
+              <div><dt>{t.taille}</dt><dd>{tailleMac}</dd></div>
+              <div class="fiche-large">
+                <dt>SHA-256</dt>
+                <dd><Commande texte={mac.sha256} lang={lang} /></dd>
+                <dd class="aide-sha">{t.shaAide[0]}<a href={`${lien(lang, 'contact')}#faq/installation/sha256`}>{t.shaAide[1]}</a></dd>
+              </div>
+            </dl>
+            <p class="prerequis">
+              {t.mac.prerequis[0]}<a href="https://obsproject.com/" rel="noopener noreferrer">{t.mac.prerequis[1]}</a>{t.mac.prerequis[2]}
+            </p>
+          </div>
+
+          <aside class="carte alerte" aria-labelledby="titre-ouvrir-mac">
+            <h2 id="titre-ouvrir-mac" class="carte-titre">{t.mac.ouvrir.titre}</h2>
+            <p>{t.mac.ouvrir.intro}</p>
+            <ol class="etapes-courtes">
+              {t.mac.ouvrir.etapes.map((e) => <li><Texte texte={e} /></li>)}
+            </ol>
+            <p class="texte-doux">{t.mac.ouvrir.apres}</p>
+          </aside>
+        </div>
+
+        <section class="bloc" aria-labelledby="titre-autorisations-mac">
+          <h2 id="titre-autorisations-mac" class="bloc-titre">{t.mac.autorisations.titre}</h2>
+          <p>{t.mac.autorisations.intro}</p>
+          <div class="colonnes">
+            {t.mac.autorisations.items.map(([titre, texte]) => (
+              <div>
+                <h3>{titre}</h3>
+                <p class="texte-doux">{texte}</p>
+              </div>
+            ))}
+          </div>
+          <p><Texte texte={t.mac.autorisations.refus} /></p>
+        </section>
+
+        <section class="bloc" aria-labelledby="titre-verifier-mac" id="verifier-mac">
+          <h2 id="titre-verifier-mac" class="bloc-titre">{t.verifier.titre}</h2>
+          <div class="colonnes">
+            <div>
+              <h3>{t.verifier.empreinteTitre}</h3>
+              <p>{t.mac.empreinteIntro}</p>
+              <Commande texte={`shasum -a 256 ${mac.fichier}`} lang={lang} />
+              <p class="texte-doux">{t.verifier.empreinteApres}</p>
+            </div>
+            <div>
+              <h3>{t.verifier.attestationTitre}</h3>
+              <p>{t.verifier.attestationIntro[0]}<a href="https://cli.github.com/" rel="noopener noreferrer">{t.verifier.attestationIntro[1]}</a>{t.verifier.attestationIntro[2]}</p>
+              <Commande texte={`gh attestation verify ${mac.fichier} --repo ${REPO}`} lang={lang} />
+              <p class="texte-doux">{t.verifier.attestationApres}</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="bloc" aria-labelledby="titre-premiers-pas-mac">
+          <h2 id="titre-premiers-pas-mac" class="bloc-titre">{t.premiersPas.titre}</h2>
+          <ol class="premiers-pas">
+            {t.premiersPas.etapes.map(([titre, texte], i) => (
+              <li>
+                <h3>{titre}</h3>
+                <p><Texte texte={i === 1 ? t.mac.motDePasse : texte} /></p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section class="bloc" aria-labelledby="titre-mise-a-jour-mac">
+          <h2 id="titre-mise-a-jour-mac" class="bloc-titre">{t.miseAJour.titre}</h2>
+          <p>{t.miseAJour.intro}</p>
+          <ol class="etapes-courtes">
+            {t.mac.miseAJour.map((e) => <li><Texte texte={e} /></li>)}
+          </ol>
+          <p class="texte-doux">{t.miseAJour.apres}</p>
+        </section>
+      </>
+    ) : (
+      <div class="carte carte-mac">
+        <p class="surtitre">macOS</p>
+        <h2 class="carte-titre">{t.mac.titre}</h2>
+        <p>{t.mac.texte}</p>
+        {DISCORD.general && (
+          <a class="btn btn-primaire" href={DISCORD.general} rel="noopener noreferrer">{t.mac.prevenir}</a>
+        )}
+      </div>
+    )}
   </section>
 </Base>
 
@@ -206,11 +295,12 @@ const jsonLd = {
 
   .bientot { font-size: 1.3rem; font-weight: 700; margin: 0 0 .5rem; }
   .prerequis { margin: 1.5rem 0 0; padding-top: 1rem; border-top: 1px solid var(--ligne); font-size: .95rem; color: var(--texte-doux); }
+  .aide-sha { margin-top: .5rem; font-size: .9rem; color: var(--texte-doux); }
   .lien-rapport { margin: .5rem 0 0; font-size: .95rem; }
   .texte-doux { color: var(--texte-doux); }
 
-  .smartscreen { border-color: #3a3320; background: #16140d; }
-  .smartscreen .carte-titre { color: #fcd34d; }
+  .alerte { border-color: #3a3320; background: #16140d; }
+  .alerte .carte-titre { color: #fcd34d; }
   .etapes-courtes { padding-left: 1.25rem; }
   .etapes-courtes li { margin: .35rem 0; }
 
