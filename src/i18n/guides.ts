@@ -69,6 +69,10 @@ const fr: Record<GuideCle, Guide> = {
       ["Les limites à connaître", "La musique chantée se transcrit mal, comme avec tous les moteurs. En CC, une ligne compte au plus 32 caractères (limite du format), sur 4 lignes au plus, centrées. Le CC n'envoie que les phrases terminées : il a donc un peu de retard sur le widget."],
     ],
     faq: [
+      ["Comment avoir des sous-titres sur son live Twitch ?", "Installez OBS Dynamics, ouvrez l'onglet **Sous-titres**, choisissez votre micro et cliquez sur **Démarrer**. Pour que tout le monde les voie, collez le lien du widget dans OBS ; pour que chaque spectateur choisisse, activez **Envoyer à OBS** : le bouton CC apparaît sur Twitch pendant le live."],
+      ["Faut-il un plugin OBS pour les sous-titres ?", "Non. OBS Dynamics est une application à part : le widget s'ajoute comme source navigateur, et les CC passent par le WebSocket intégré à OBS Studio depuis la version 28."],
+      ["Comment activer les sous-titres CC (closed captions) sur Twitch ?", "Côté streamer, activez **Envoyer à OBS** dans OBS Dynamics, puis lancez le live : Twitch ne demande aucun réglage. Côté spectateur, il suffit de cliquer sur le bouton CC du lecteur."],
+      ["Peut-on sous-titrer le son d'une vidéo, d'un jeu ou d'un appel ?", "Oui : choisissez **Son du PC** comme source audio au lieu du micro. Tout ce que vous entendez est transcrit, sauf la musique chantée, qui se transcrit mal."],
       ["Les sous-titres sont-ils gratuits ?", "Oui. Le moteur de reconnaissance tourne sur votre PC : aucun abonnement, aucun compte, aucune clé d'API."],
       ["Ma voix est-elle envoyée sur internet ?", "Non. Le son est transcrit sur votre PC, sans être enregistré ni envoyé. Seuls les modèles sont téléchargés, une fois."],
       ["Quelles langues sont reconnues ?", "Le français, l'anglais, l'allemand et l'espagnol."],
@@ -201,6 +205,10 @@ const en: Record<GuideCle, Guide> = {
       ["Known limits", "Sung music transcribes poorly, as with every engine. In closed captions, a line holds at most 32 characters (a limit of the format), on up to 4 centred lines. Captions only carry finished sentences, so they lag slightly behind the widget."],
     ],
     faq: [
+      ["How do I get subtitles on my Twitch stream?", "Install OBS Dynamics, open the **Subtitles** tab, pick your microphone and click **Start**. For everyone to see them, paste the widget link into OBS; to let each viewer choose, turn on **Send to OBS**: the CC button shows on Twitch during the stream."],
+      ["Do I need an OBS plugin for subtitles?", "No. OBS Dynamics is a separate app: the widget is added as a browser source, and captions go through the WebSocket built into OBS Studio since version 28."],
+      ["How do I turn on closed captions on Twitch?", "As a streamer, turn on **Send to OBS** in OBS Dynamics, then go live: Twitch needs no setting. Viewers just click the CC button on the player."],
+      ["Can I subtitle the audio of a video, a game or a call?", "Yes: choose **PC audio** as the audio source instead of the microphone. Everything you hear is transcribed, except sung music, which transcribes poorly."],
       ["Are the subtitles free?", "Yes. The recognition engine runs on your PC: no subscription, no account, no API key."],
       ["Is my voice sent over the internet?", "No. Audio is transcribed on your PC, never recorded or sent. Only the models are downloaded, once."],
       ["Which languages are recognised?", "French, English, German and Spanish."],
