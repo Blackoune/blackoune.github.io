@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Texte from '../components/Texte.astro';
 import Chat from '../components/demo/Chat.astro';
 import Widget from '../components/demo/Widget.astro';
+import SousTitres from '../components/demo/SousTitres.astro';
 import { derniereRelease } from '../data/release';
 import { GUIDES, GUIDES_CLES, lien, TEXTES, type Lang } from '../i18n';
 import { GITHUB_URL, REPO } from '../site';
@@ -46,6 +47,7 @@ const logiciel = {
   codeRepository: GITHUB_URL,
   author: { '@type': 'Person', name: 'Blackoune' },
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  featureList: t.fonctions,
   ...(release && {
     softwareVersion: release.version.replace(/^v/, ''),
     downloadUrl: `https://github.com/${REPO}/releases/latest/download/OBS-Dynamics-Setup.exe`,
@@ -225,6 +227,16 @@ const jsonLd = {
     </article>
 
     <article class="module module-inverse">
+      <div class="module-texte">
+        <p class="module-num mono">{m.sousTitres[0]}</p>
+        <h3>{m.sousTitres[1]}</h3>
+        <p>{m.sousTitres[2]}</p>
+        <p><a href={lien(lang, 'guide-sous-titres')}>{GUIDES[lang]['guide-sous-titres'].court}</a></p>
+      </div>
+      <div class="demo"><SousTitres phrase={m.phraseSousTitres} etiquette="CC" /></div>
+    </article>
+
+    <article class="module">
       <div class="module-texte">
         <p class="module-num mono">{m.langues[0]}</p>
         <h3>{m.langues[1]}</h3>

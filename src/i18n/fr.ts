@@ -29,9 +29,10 @@ export const fr = {
   },
 
   accueil: {
-    titre: 'OBS Dynamics — changer de scène OBS automatiquement selon le jeu',
-    description: 'Logiciel gratuit pour Windows : détecte le jeu lancé, repère menu ou partie, et bascule vos scènes OBS sans intervention. Overlays, chat Twitch et widget musique inclus.',
+    titre: 'OBS Dynamics — scènes OBS automatiques et sous-titres en direct',
+    description: "Logiciel gratuit pour OBS : vos scènes changent selon le jeu, et vos paroles s'affichent en sous-titres automatiques sur Twitch et YouTube, tout en local. Chat Twitch et widget musique inclus.",
     surtitre: 'Gratuit · Windows 10 et 11 · Open source',
+    fonctions: ["Changement de scène OBS automatique selon le jeu (menu, en jeu)", "Sous-titres automatiques en direct pour OBS, Twitch et YouTube", "Sous-titres CC (closed captions) envoyés par OBS", "Transcription locale du micro ou du son du PC, sans compte", "Overlay de chat Twitch sans compte", "Widget musique en cours de lecture (Spotify, Deezer, Apple Music)", "Raccourcis clavier pour afficher une image, une vidéo ou un son"],
     h1: 'Vos scènes OBS changent seules, selon le jeu.',
     chapo: "OBS Dynamics reconnaît le jeu lancé, repère s'il est au menu ou en partie, et bascule la bonne scène. De 720p à 4K, sans rien toucher pendant le live.",
     regie: {
@@ -70,13 +71,15 @@ export const fr = {
         ['Neko_', '#8A2BE2', 'salut tout le monde'],
       ],
       widget: ['Widget musique', "Ce que vous écoutez, à l'écran", "Pochette, titre, artiste et forme d'onde, depuis Spotify, Deezer, Apple Music et les autres lecteurs Windows. Cinq dispositions, huit thèmes, image de fond personnalisée."],
+      sousTitres: ["Sous-titres", "Vos paroles sous-titrées en direct", "Votre micro ou le son du PC, transcrit sur votre PC en 0,3 seconde environ, en français, anglais, allemand ou espagnol. Affichez-les dans OBS avec un widget au style réglable, ou en sous-titres CC que chaque spectateur active sur Twitch et YouTube. Aucun son ne quitte votre PC."],
+      phraseSousTitres: 'On attaque le boss final, croisez les doigts',
       langues: ['Interface', '39 langues, sans redémarrer', "L'interface change de langue immédiatement. Ci-contre, le même onglet dans chacune d'elles."],
     },
     confiance: {
       titre: 'Votre PC, vos données',
       items: [
         ['100 % local', 'Tout tourne sur votre PC. Aucun serveur, aucun compte à créer.'],
-        ['Aucune télémétrie', 'Les seules connexions vont vers OBS, vers Twitch si vous utilisez le chat, vers les jaquettes de jeux, et vers GitHub au démarrage pour vérifier les mises à jour.'],
+        ['Aucune télémétrie', "Les seules connexions vont vers OBS, vers Twitch si vous utilisez le chat, vers les jaquettes de jeux, vers GitHub au démarrage pour vérifier les mises à jour, et vers les modèles de sous-titres quand vous les téléchargez."],
         ['Identifiants chiffrés', 'Le mot de passe OBS est chiffré par Windows et lié à votre compte.'],
         ['Code ouvert', 'Licence GPL-3.0 : le code entier est lisible sur GitHub.'],
         ['Exécutable vérifiable', 'Construit par GitHub, empreinte SHA-256 publiée.'],
@@ -89,6 +92,7 @@ export const fr = {
         ['Comment changer de scène OBS automatiquement selon le jeu ?', "Installez OBS Dynamics, ajoutez votre jeu, choisissez une scène pour le menu et une pour la partie : l'application bascule seule. Elle reconnaît le jeu lancé, compare l'écran à vos captures de référence et commande OBS par son WebSocket."],
         ['OBS Dynamics est-il gratuit ?', 'Oui, entièrement. Le logiciel est open source sous licence GPL-3.0, sans publicité ni version payante.'],
         ['Faut-il créer un compte ou donner un accès à ma chaîne ?', 'Non. Tout tourne sur votre PC. Le chat Twitch est lu en anonyme : aucun compte, aucune clé.'],
+        ['Comment ajouter des sous-titres automatiques à mon live Twitch ?', "Dans l'onglet Sous-titres d'OBS Dynamics, choisissez votre micro et la langue, puis cliquez sur Démarrer. Collez le lien du widget dans OBS comme source navigateur, ou activez l'envoi en sous-titres CC : vos spectateurs les affichent avec le bouton CC de Twitch ou YouTube. Gratuit, sans compte, et tout reste sur votre PC."],
         ['Est-ce que ça ralentit mes jeux ?', "L'écran est analysé toutes les 2 secondes par défaut (0,5 s au minimum), sur de petits fragments d'image. Aucune injection dans le jeu : l'application lit seulement l'écran et la liste des processus."],
         ['Quelles résolutions sont prises en charge ?', "De 720p à 4K. Les captures de référence s'adaptent à la résolution de l'écran."],
       ],
@@ -253,7 +257,7 @@ export const fr = {
     sections: [
       ['Ce site', "Aucun cookie, aucune mesure d'audience, aucun formulaire, aucune ressource chargée depuis un autre site. Le questionnaire de la FAQ ne transmet rien : vos réponses restent dans votre navigateur."],
       ['Hébergement', 'Le site est hébergé par GitHub Pages. Comme tout serveur web, GitHub enregistre les adresses IP des visiteurs, selon sa propre politique de confidentialité.'],
-      ['Le logiciel', "OBS Dynamics fonctionne en local et ne contient aucune télémétrie. Il se connecte seulement à OBS, à Twitch si vous utilisez le chat, aux services de jaquettes (Steam, RAWG), et à GitHub au démarrage pour vérifier s'il existe une nouvelle version (aucune donnée envoyée)."],
+      ['Le logiciel', "OBS Dynamics fonctionne en local et ne contient aucune télémétrie. Il se connecte seulement à OBS, à Twitch si vous utilisez le chat, aux services de jaquettes (Steam, RAWG), à GitHub au démarrage pour vérifier s'il existe une nouvelle version (aucune donnée envoyée), et à GitHub encore quand vous téléchargez un modèle de sous-titres. Le son transcrit pour les sous-titres reste sur votre PC : il n'est ni enregistré ni envoyé."],
       ['Liens externes', "Les liens vers Discord, GitHub et Twitch mènent à des services tiers, soumis à leurs propres règles de confidentialité. Ce site n'intègre aucun de leurs contenus."],
     ],
     lienGithub: 'Politique de confidentialité de GitHub',

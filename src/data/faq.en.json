@@ -207,6 +207,49 @@
       ]
     },
     {
+      "id": "sous-titres",
+      "title": "Subtitles",
+      "symptoms": [
+        {
+          "id": "rien-transcrit",
+          "title": "Nothing shows in the live transcript",
+          "steps": [
+            "Click **Start** in the **Subtitles** tab: nothing is transcribed before that.",
+            "If the tab says the model must be downloaded, click **Download** and wait for it to finish.",
+            "“No sound received for 5 s”: the chosen source gets no sound. Pick your microphone in **Audio source**, or **PC audio** for a video or a call, then **Refresh** if you just plugged in a headset."
+          ]
+        },
+        {
+          "id": "cc-invisibles",
+          "title": "Viewers cannot see the closed captions",
+          "steps": [
+            "Captions are only sent during a live stream. Off air, the tab says OBS is connected but not live.",
+            "Start monitoring (the **Start** button at the bottom left) to connect OBS, then turn on **Send to OBS**. While live, the tab says captions are being sent.",
+            "On YouTube, turn on captions for the live stream in YouTube Studio with the source **Embedded 608/708 captions**. Twitch needs nothing.",
+            "Each viewer turns captions on with the player's CC button. They do not show in the Twitch Android app or on Chromecast; on iPhone, captions must be turned on in the accessibility settings.",
+            "For everyone to see subtitles, also use the widget: it is part of the picture."
+          ]
+        },
+        {
+          "id": "mot-mal-ecrit",
+          "title": "A username, game or emote is misspelled",
+          "steps": [
+            "Open the **Word bank** and add the word as it should be written.",
+            "If it is still misheard, fill in “Heard as (optional)” with what the engine writes instead (several spellings, separated by commas).",
+            "Test it in the “Try a sentence here” field before going live."
+          ]
+        },
+        {
+          "id": "accents-cc",
+          "title": "Accents look wrong in the closed captions",
+          "steps": [
+            "The caption format does not support every accent, and some players show them badly.",
+            "Turn off **Keep accents** in the **Closed captions (CC)** section: “é” becomes “e”. The widget keeps accents."
+          ]
+        }
+      ]
+    },
+    {
       "id": "widget-musique",
       "title": "Music widget",
       "symptoms": [

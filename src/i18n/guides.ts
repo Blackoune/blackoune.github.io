@@ -2,8 +2,8 @@
 // répond dès la première phrase (ce que Google et les IA reprennent), puis
 // détaille. Mise en forme autorisée : **gras** et `code` (Texte.astro).
 
-export type GuideCle = 'guide-scenes' | 'guide-musique' | 'guide-chat' | 'guide-raccourcis';
-export const GUIDES_CLES: GuideCle[] = ['guide-scenes', 'guide-musique', 'guide-chat', 'guide-raccourcis'];
+export type GuideCle = 'guide-scenes' | 'guide-sous-titres' | 'guide-musique' | 'guide-chat' | 'guide-raccourcis';
+export const GUIDES_CLES: GuideCle[] = ['guide-scenes', 'guide-sous-titres', 'guide-musique', 'guide-chat', 'guide-raccourcis'];
 
 export interface Guide {
   slug: string;
@@ -16,7 +16,7 @@ export interface Guide {
   etapes: [string, string][];
   sections: [string, string][];
   faq: [string, string][];
-  demo?: 'widget' | 'chat';
+  demo?: 'widget' | 'chat' | 'sous-titres';
 }
 
 const fr: Record<GuideCle, Guide> = {
@@ -46,6 +46,36 @@ const fr: Record<GuideCle, Guide> = {
       ['Avec quels jeux cela fonctionne-t-il ?', 'Tout jeu Windows : les jeux Steam sont importés automatiquement, les autres se reconnaissent au nom de leur exécutable. De 720p à 4K.'],
       ['Est-ce gratuit ?', 'Oui, entièrement : logiciel open source sous licence GPL-3.0.'],
     ],
+  },
+  'guide-sous-titres': {
+    slug: "sous-titres-automatiques-obs-twitch",
+    court: "Sous-titres automatiques sur OBS et Twitch",
+    titre: "Sous-titres automatiques en direct sur OBS, Twitch et YouTube (gratuit) — OBS Dynamics",
+    description: "Ajoutez des sous-titres en direct à votre stream : transcription locale du micro ou du son du PC, widget OBS stylé ou sous-titres CC sur Twitch et YouTube. Gratuit, sans compte.",
+    h1: "Comment ajouter des sous-titres automatiques à un live OBS ?",
+    intro: "Dans l'onglet **Sous-titres** d'OBS Dynamics, choisissez votre micro et la langue, puis cliquez sur **Démarrer** : vos paroles s'écrivent en 0,3 seconde environ. Affichez-les dans OBS avec le widget (source navigateur), ou envoyez-les en sous-titres CC que chaque spectateur active sur Twitch ou YouTube. La transcription se fait sur votre PC : aucun compte, aucune clé, aucun son envoyé sur internet.",
+    etapesTitre: "Mise en route en 3 étapes",
+    etapes: [
+      ["Lancez la transcription", "Onglet **Sous-titres** : choisissez la **Source audio** (votre micro, ou **Son du PC** pour une vidéo ou un appel) et la **Langue parlée**. Au premier usage, cliquez sur **Télécharger** pour installer le modèle de la langue, puis sur **Démarrer**. Rien n'est transcrit avant."],
+      ["Affichez le widget dans OBS", "Section **Widget OBS** : **Copier le lien**, puis dans OBS **Sources → + → Navigateur**, collez le lien, largeur `1920` et hauteur `1080`. Les sous-titres s'affichent en bas : déplacez ou recadrez la source pour les placer."],
+      ["Envoyez les sous-titres CC", "Lancez la surveillance (bouton **Démarrer** en bas à gauche) pour connecter OBS, activez **Envoyer à OBS** dans la section **Sous-titres CC**, puis lancez votre live. Les CC partent dès le début du live."],
+    ],
+    sections: [
+      ["Widget ou sous-titres CC ?", "Le **widget** est incrusté dans l'image : tout le monde le voit, avec le style que vous avez choisi. Les **sous-titres CC** voyagent à part dans le flux vidéo : chaque spectateur les active ou non avec le bouton CC de Twitch ou YouTube, et choisit lui-même la police, la couleur et la taille. Les deux peuvent tourner en même temps."],
+      ["Un style à votre image", "Bouton **Style** : police, taille, graisse, couleurs, contour, ombre, fond (bandeau ou boîte), nombre de lignes, durée d'affichage et animation (fondu ou mot par mot). Quatre préréglages pour démarrer (TV, Contour, Karaoké, Minimal), puis **Personnalisé**. Chaque réglage s'applique en direct dans OBS."],
+      ["Rapide ou Précis", "En mode **Rapide**, les mots s'affichent en 0,3 seconde environ. Le mode **Précis** corrige en plus chaque phrase 0,5 seconde environ après la pause, grâce à un modèle de correction (NVIDIA Parakeet). Le réglage **Fin de phrase** fixe la durée de silence qui termine une phrase."],
+      ["Pseudos, jeux et emotes bien écrits", "La **Banque de mots** retient l'orthographe de vos pseudos, de vos jeux et de vos emotes. Les à-peu-près courants sont corrigés tout seuls : « Elden Rin » devient « Elden Ring »."],
+      ["Taille des modèles", "Chaque langue demande un modèle téléchargé une seule fois : de 55 à 125 Mo. Le mode **Précis** ajoute un modèle de 487 Mo. Les modèles de langue viennent du projet open source sherpa-onnx, sur GitHub, et leur empreinte est vérifiée avant usage."],
+      ["Les limites à connaître", "La musique chantée se transcrit mal, comme avec tous les moteurs. En CC, une ligne compte au plus 32 caractères (limite du format), sur 4 lignes au plus, centrées. Le CC n'envoie que les phrases terminées : il a donc un peu de retard sur le widget."],
+    ],
+    faq: [
+      ["Les sous-titres sont-ils gratuits ?", "Oui. Le moteur de reconnaissance tourne sur votre PC : aucun abonnement, aucun compte, aucune clé d'API."],
+      ["Ma voix est-elle envoyée sur internet ?", "Non. Le son est transcrit sur votre PC, sans être enregistré ni envoyé. Seuls les modèles sont téléchargés, une fois."],
+      ["Quelles langues sont reconnues ?", "Le français, l'anglais, l'allemand et l'espagnol."],
+      ["Les sous-titres CC fonctionnent-ils sur YouTube ?", "Oui. Dans YouTube Studio, activez les sous-titres du live avec la source **Sous-titres intégrés (608/708)**. Twitch ne demande aucun réglage."],
+      ["Pourquoi un spectateur ne voit-il pas les CC ?", "Les sous-titres intégrés ne s'affichent pas dans l'application Android de Twitch ni sur Chromecast. Sur iPhone, il faut activer les sous-titres dans les réglages d'accessibilité. Le widget, lui, s'affiche partout, puisqu'il fait partie de l'image."],
+    ],
+    demo: 'sous-titres',
   },
   'guide-musique': {
     slug: 'afficher-musique-en-cours-obs',
@@ -148,6 +178,36 @@ const en: Record<GuideCle, Guide> = {
       ['Which games does it work with?', 'Any Windows game: Steam games are imported automatically, others are recognised by their executable name. From 720p to 4K.'],
       ['Is it free?', 'Yes, completely: open-source software under the GPL-3.0 licence.'],
     ],
+  },
+  'guide-sous-titres': {
+    slug: "live-subtitles-obs-twitch",
+    court: "Live subtitles on OBS and Twitch",
+    titre: "Automatic live subtitles for OBS, Twitch and YouTube (free) — OBS Dynamics",
+    description: "Add live subtitles to your stream: local transcription of your mic or PC audio, a styled OBS widget or Twitch and YouTube closed captions. Free, no account.",
+    h1: "How do I add automatic subtitles to an OBS live stream?",
+    intro: "In the **Subtitles** tab of OBS Dynamics, pick your microphone and language, then click **Start**: your words appear in about 0.3 seconds. Show them in OBS with the widget (browser source), or send them as closed captions that each viewer turns on with the CC button on Twitch or YouTube. Transcription runs on your PC: no account, no key, no audio sent over the internet.",
+    etapesTitre: "Get started in 3 steps",
+    etapes: [
+      ["Start transcribing", "**Subtitles** tab: choose the **Audio source** (your microphone, or **PC audio** for a video or a call) and the **Spoken language**. The first time, click **Download** to install the language model, then **Start**. Nothing is transcribed before that."],
+      ["Show the widget in OBS", "**OBS widget** section: **Copy link**, then in OBS **Sources → + → Browser**, paste the link, width `1920` and height `1080`. Subtitles appear at the bottom: move or crop the source to place them."],
+      ["Send closed captions", "Start monitoring (the **Start** button at the bottom left) to connect OBS, turn on **Send to OBS** in the **Closed captions (CC)** section, then go live. Captions are sent as soon as the stream starts."],
+    ],
+    sections: [
+      ["Widget or closed captions?", "The **widget** is part of the picture: everyone sees it, in the style you chose. **Closed captions** travel separately in the video stream: each viewer turns them on or off with the CC button on Twitch or YouTube, and picks the font, colour and size. Both can run at the same time."],
+      ["A style that fits your stream", "**Style** button: font, size, weight, colours, outline, shadow, background (band or box), number of lines, display time and animation (fade or word by word). Four presets to start with (TV, Outline, Karaoke, Minimal), then **Custom**. Every setting applies live in OBS."],
+      ["Fast or Accurate", "In **Fast** mode, words appear in about 0.3 seconds. **Accurate** mode also corrects each sentence about 0.5 seconds after the pause, with a correction model (NVIDIA Parakeet). The **Sentence end** setting sets how much silence ends a sentence."],
+      ["Usernames, games and emotes spelled right", "The **Word bank** learns how to spell your usernames, games and emotes. Common near-misses are fixed on their own: “Elden Rin” becomes “Elden Ring”."],
+      ["Model sizes", "Each language needs a model, downloaded once: 55 to 125 MB. **Accurate** mode adds a 487 MB model. Language models come from the open source sherpa-onnx project on GitHub, and their checksum is verified before use."],
+      ["Known limits", "Sung music transcribes poorly, as with every engine. In closed captions, a line holds at most 32 characters (a limit of the format), on up to 4 centred lines. Captions only carry finished sentences, so they lag slightly behind the widget."],
+    ],
+    faq: [
+      ["Are the subtitles free?", "Yes. The recognition engine runs on your PC: no subscription, no account, no API key."],
+      ["Is my voice sent over the internet?", "No. Audio is transcribed on your PC, never recorded or sent. Only the models are downloaded, once."],
+      ["Which languages are recognised?", "French, English, German and Spanish."],
+      ["Do closed captions work on YouTube?", "Yes. In YouTube Studio, turn on captions for the live stream with the source **Embedded 608/708 captions**. Twitch needs no setting."],
+      ["Why can a viewer not see the captions?", "Embedded captions do not show in the Twitch Android app or on Chromecast. On iPhone, captions must be turned on in the accessibility settings. The widget shows everywhere, since it is part of the picture."],
+    ],
+    demo: 'sous-titres',
   },
   'guide-musique': {
     slug: 'obs-now-playing-widget',

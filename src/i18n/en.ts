@@ -28,9 +28,10 @@ export const en: Textes = {
   },
 
   accueil: {
-    titre: 'OBS Dynamics — switch OBS scenes automatically for each game',
-    description: 'Free Windows app: detects the running game, tells menu from gameplay, and switches your OBS scenes for you. Hotkey overlays, Twitch chat and music widget included.',
+    titre: 'OBS Dynamics — automatic OBS scenes and live subtitles',
+    description: "Free app for OBS: your scenes switch with the game, and your words show as automatic live subtitles on Twitch and YouTube, all on your PC. Twitch chat and music widget included.",
     surtitre: 'Free · Windows 10 and 11 · Open source',
+    fonctions: ["Automatic OBS scene switching for each game (menu, gameplay)", "Automatic live subtitles for OBS, Twitch and YouTube", "Closed captions (CC) sent through OBS", "Local transcription of microphone or PC audio, no account", "Twitch chat overlay without an account", "Now playing music widget (Spotify, Deezer, Apple Music)", "Hotkeys to show an image, a video or a sound"],
     h1: 'Your OBS scenes switch on their own, game by game.',
     chapo: 'OBS Dynamics recognises the running game, sees whether you are in a menu or playing, and switches to the right scene. From 720p to 4K, hands-free during your stream.',
     regie: {
@@ -69,13 +70,15 @@ export const en: Textes = {
         ['Neko_', '#8A2BE2', 'hi everyone'],
       ],
       widget: ['Music widget', 'What you are listening to, on screen', 'Cover, title, artist and waveform from Spotify, Deezer, Apple Music and other Windows players. Five layouts, eight themes, custom background image.'],
+      sousTitres: ["Subtitles", "Your words, subtitled live", "Your microphone or PC audio, transcribed on your PC in about 0.3 seconds, in French, English, German or Spanish. Show them in OBS with a widget you can style, or as closed captions each viewer turns on on Twitch and YouTube. No audio leaves your PC."],
+      phraseSousTitres: 'Here comes the final boss, fingers crossed',
       langues: ['Interface', '39 languages, no restart', 'The interface changes language instantly. Here is the same tab in each of them.'],
     },
     confiance: {
       titre: 'Your PC, your data',
       items: [
         ['100% local', 'Everything runs on your PC. No server, no account to create.'],
-        ['No telemetry', 'The only connections go to OBS, to Twitch if you use the chat, to game cover art, and to GitHub at startup to check for updates.'],
+        ['No telemetry', "The only connections go to OBS, to Twitch if you use the chat, to game cover art, to GitHub at startup to check for updates, and to the subtitle models when you download them."],
         ['Encrypted credentials', 'Your OBS password is encrypted by Windows and tied to your account.'],
         ['Open source', 'GPL-3.0 licence: the whole code base is readable on GitHub.'],
         ['Verifiable executable', 'Built by GitHub, SHA-256 checksum published.'],
@@ -88,6 +91,7 @@ export const en: Textes = {
         ['How do I switch OBS scenes automatically for each game?', 'Install OBS Dynamics, add your game, pick one scene for the menu and one for gameplay: the app switches on its own. It recognises the running game, compares the screen with your reference screenshots and drives OBS through its WebSocket.'],
         ['Is OBS Dynamics free?', 'Yes, completely. It is open source under the GPL-3.0 licence, with no ads and no paid tier.'],
         ['Do I need an account or to give access to my channel?', 'No. Everything runs on your PC. Twitch chat is read anonymously: no account, no key.'],
+        ['How do I add automatic subtitles to my Twitch stream?', "In the Subtitles tab of OBS Dynamics, pick your microphone and language, then click Start. Paste the widget link into OBS as a browser source, or turn on closed captions: viewers show them with the CC button on Twitch or YouTube. Free, no account, and everything stays on your PC."],
         ['Will it slow down my games?', 'The screen is checked every 2 seconds by default (every 0.5 s at most), on small image fragments. Nothing is injected into the game: the app only reads the screen and the process list.'],
         ['Which resolutions are supported?', 'From 720p to 4K. Reference screenshots adapt to your screen resolution.'],
       ],
@@ -252,7 +256,7 @@ export const en: Textes = {
     sections: [
       ['This website', 'No cookies, no analytics, no forms, no resources loaded from other websites. The FAQ questionnaire sends nothing: your answers stay in your browser.'],
       ['Hosting', 'The website is hosted on GitHub Pages. Like any web server, GitHub logs visitors’ IP addresses, under its own privacy policy.'],
-      ['The software', 'OBS Dynamics runs locally and contains no telemetry. It only connects to OBS, to Twitch if you use the chat, to cover art services (Steam, RAWG), and to GitHub at startup to check for a new version (no data sent).'],
+      ['The software', "OBS Dynamics runs locally and contains no telemetry. It only connects to OBS, to Twitch if you use the chat, to cover art services (Steam, RAWG), to GitHub at startup to check for a new version (no data sent), and to GitHub again when you download a subtitle model. Audio transcribed for subtitles stays on your PC: it is never recorded or sent."],
       ['External links', 'Links to Discord, GitHub and Twitch lead to third-party services, governed by their own privacy policies. This website embeds none of their content.'],
     ],
     lienGithub: 'GitHub privacy statement',

@@ -3,12 +3,13 @@
 > Free, open-source Windows application (GPL-3.0) that switches OBS Studio scenes automatically: it detects which game is running, tells menu from gameplay by matching the screen against reference screenshots, and drives OBS through its WebSocket (v5). Made by Blackoune. Independent project, not affiliated with the OBS Project.
 
 Key facts:
-- Platforms: Windows 10 and 11. No macOS or Linux version.
+- Platforms: Windows 10 and 11; macOS 13 or later on Apple silicon (since v1.0.4). No Linux version.
 - Requires OBS Studio 28 or later (built-in WebSocket server).
 - Works from 720p to 4K. Screen checked every 2 s by default (0.5 s minimum).
 - A switch needs two matching reads and a lead of at least 0.15 between states.
 - Hotkeys: F1 forces "in game", F2 "menu", F3 "idle".
 - Overlays as OBS browser sources: key-combo media (image, video, sound, hold mode), anonymous Twitch chat, music "now playing" widget (5 layouts, 8 themes).
+- Automatic live subtitles: local speech-to-text (sherpa-onnx) of the microphone or PC audio, in French, English, German and Spanish. Shown as a styled OBS browser-source widget and/or sent as closed captions (CEA-608) through OBS, which viewers turn on with the CC button on Twitch or YouTube. No account, no audio sent online.
 - Interface in 39 languages.
 - 100% local: no account, no telemetry. Credentials encrypted with Windows DPAPI.
 - The executable is built by GitHub Actions only; SHA-256 and build provenance attestation published with each release.
@@ -19,6 +20,7 @@ Key facts:
 - [Nous contacter](https://blackoune.github.io/contact/): FAQ and troubleshooting, Discord, email
 - [Comparatif](https://blackoune.github.io/comparatif/): OBS Dynamics vs Advanced Scene Switcher vs manual switching
 - [Changer de scène OBS automatiquement](https://blackoune.github.io/changer-de-scene-obs-automatiquement/)
+- [Sous-titres automatiques sur OBS et Twitch](https://blackoune.github.io/sous-titres-automatiques-obs-twitch/)
 - [Afficher la musique en cours sur OBS](https://blackoune.github.io/afficher-musique-en-cours-obs/)
 - [Afficher le chat Twitch sur OBS](https://blackoune.github.io/afficher-chat-twitch-obs/)
 - [Cacher la minimap avec un raccourci OBS](https://blackoune.github.io/cacher-minimap-image-son-obs-raccourci/)
@@ -29,6 +31,7 @@ Key facts:
 - [Contact and FAQ](https://blackoune.github.io/en/contact/)
 - [Comparison](https://blackoune.github.io/en/comparison/)
 - [Switch OBS scenes automatically for each game](https://blackoune.github.io/en/switch-obs-scenes-automatically/)
+- [Live subtitles on OBS and Twitch](https://blackoune.github.io/en/live-subtitles-obs-twitch/)
 - [Show the song now playing on OBS (Spotify, Deezer)](https://blackoune.github.io/en/obs-now-playing-widget/)
 - [Show Twitch chat on OBS without an account](https://blackoune.github.io/en/twitch-chat-overlay-obs/)
 - [Hide the minimap with an OBS hotkey](https://blackoune.github.io/en/obs-hotkey-hide-minimap/)

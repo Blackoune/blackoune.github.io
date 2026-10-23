@@ -207,6 +207,49 @@
       ]
     },
     {
+      "id": "sous-titres",
+      "title": "Sous-titres",
+      "symptoms": [
+        {
+          "id": "rien-transcrit",
+          "title": "Rien ne s'écrit dans la transcription",
+          "steps": [
+            "Cliquez sur **Démarrer** dans l'onglet **Sous-titres** : rien n'est transcrit avant.",
+            "Si l'onglet indique « Modèle à télécharger », cliquez sur **Télécharger** et attendez la fin du téléchargement.",
+            "« Aucun son reçu depuis 5 s » : la source choisie ne reçoit rien. Choisissez votre micro dans **Source audio**, ou **Son du PC** pour une vidéo ou un appel, puis **Actualiser** si un casque vient d'être branché."
+          ]
+        },
+        {
+          "id": "cc-invisibles",
+          "title": "Les spectateurs ne voient pas les sous-titres CC",
+          "steps": [
+            "Les CC ne partent que pendant un live. Hors live, l'onglet affiche « OBS connecté, hors live ».",
+            "Lancez la surveillance (bouton **Démarrer** en bas à gauche) pour connecter OBS, puis activez **Envoyer à OBS**. Pendant le live, l'onglet affiche « En direct : les CC sont envoyés ».",
+            "Sur YouTube, activez dans YouTube Studio les sous-titres du live avec la source **Sous-titres intégrés (608/708)**. Twitch ne demande rien.",
+            "Chaque spectateur active les CC avec le bouton CC du lecteur. Ils ne s'affichent pas dans l'application Android de Twitch ni sur Chromecast ; sur iPhone, il faut activer les sous-titres dans les réglages d'accessibilité.",
+            "Pour que tout le monde voie les sous-titres, utilisez aussi le widget : il fait partie de l'image."
+          ]
+        },
+        {
+          "id": "mot-mal-ecrit",
+          "title": "Un pseudo, un jeu ou une emote est mal écrit",
+          "steps": [
+            "Ouvrez la **Banque de mots** et ajoutez le mot tel qu'il doit s'écrire.",
+            "S'il est encore mal reconnu, remplissez « Entendu comme » avec ce que le moteur écrit à la place (plusieurs façons, séparées par des virgules).",
+            "Testez avec le champ « Essayez une phrase ici » avant le live."
+          ]
+        },
+        {
+          "id": "accents-cc",
+          "title": "Les accents s'affichent mal dans les CC",
+          "steps": [
+            "Le format des CC ne connaît pas tous les accents, et certains lecteurs les affichent mal.",
+            "Désactivez **Garder les accents** dans la section **Sous-titres CC** : « é » devient « e ». Le widget garde les accents."
+          ]
+        }
+      ]
+    },
+    {
       "id": "widget-musique",
       "title": "Widget musique",
       "symptoms": [

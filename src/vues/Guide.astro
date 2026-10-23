@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Texte from '../components/Texte.astro';
 import Chat from '../components/demo/Chat.astro';
 import Widget from '../components/demo/Widget.astro';
+import SousTitres from '../components/demo/SousTitres.astro';
 import { GUIDES, GUIDES_CLES, lien, TEXTES, type GuideCle, type Lang } from '../i18n';
 
 interface Props { lang: Lang; cle: GuideCle }
@@ -44,6 +45,7 @@ const jsonLd = {
     <p><a class="btn btn-primaire" href={lien(lang, 'installation')}>{c.telechargerWindows}</a></p>
 
     {g.demo === 'widget' && <div class="demo"><Widget /></div>}
+    {g.demo === 'sous-titres' && <div class="demo"><SousTitres phrase={TEXTES[lang].accueil.modules.phraseSousTitres} etiquette="CC" /></div>}
     {g.demo === 'chat' && <div class="demo"><Chat messages={TEXTES[lang].accueil.modules.messages} /></div>}
 
     <section aria-labelledby="titre-etapes">
