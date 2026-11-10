@@ -39,7 +39,7 @@ const jsonLd = {
 ---
 <Base lang={lang} page={cle} title={g.titre} description={g.description} jsonLd={jsonLd}>
   <article class="guide">
-    <p class="ariane mono"><a href={lien(lang)}>OBS Dynamics</a> › {c.guides}</p>
+    <p class="ariane mono"><a href={lien(lang)}>OBS Dynamics</a> / {c.guides}</p>
     <h1 class="titre-page">{g.h1}</h1>
     <p class="reponse"><Texte texte={g.intro} /></p>
     <p><a class="btn btn-primaire" href={lien(lang, 'installation')}>{c.telechargerWindows}</a></p>
@@ -93,7 +93,7 @@ const jsonLd = {
   }
   .guide section > p { color: var(--texte-doux); margin: 0; }
   .guide :is(strong, code) { color: var(--texte); }
-  .demo { margin: 2.5rem 0 0; border: 1px solid var(--ligne); border-radius: 1rem; background: var(--surface); overflow: hidden; }
+  .demo { margin: 2.5rem 0 0; border: 1px solid var(--ligne); border-radius: var(--rayon-grand); background: var(--surface); overflow: hidden; }
 
   .etapes { list-style: none; counter-reset: etape; margin: 0; padding: 0; }
   .etapes li {
@@ -113,7 +113,7 @@ const jsonLd = {
   .faq dt { font-weight: 700; margin-bottom: .3rem; }
   .faq dd { margin: 0; color: var(--texte-doux); }
 
-  .autres { margin-top: 3rem; padding: 1.5rem; border: 1px solid var(--ligne); border-radius: 1rem; background: var(--surface); }
+  .autres { margin-top: 3rem; padding: 1.5rem; border: 1px solid var(--ligne); border-radius: var(--rayon-grand); background: var(--surface); }
   .autres h2 { margin: 0 0 .75rem; font-size: 1.15rem; }
   .autres ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .4rem; }
 </style>

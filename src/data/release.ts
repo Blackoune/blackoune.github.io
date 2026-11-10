@@ -30,7 +30,8 @@ const API = `https://api.github.com/repos/${REPO}/releases/latest`;
 
 async function lire(url: string, accept: string): Promise<Response> {
   const entetes: Record<string, string> = { Accept: accept, 'User-Agent': 'obs-dynamics-site' };
-  if (process.env.GITHUB_TOKEN) entetes.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  // Le jeton ne part que vers l'API GitHub, jamais vers une adresse lue dans une réponse.
+  if (process.env.GITHUB_TOKEN && url === API) entetes.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   return fetch(url, { headers: entetes });
 }
 
@@ -61,6 +62,16 @@ async function charger(): Promise<Release | null> {
   if (reponse.status === 404) return null;
   if (!reponse.ok) throw new Error(`API GitHub : ${reponse.status} sur ${API}`);
   const r = await reponse.json();
+  // Réponse contrôlée avant usage : ces valeurs finissent dans des liens.
+  const date = new Date(r?.published_at);
+  if (typeof r?.tag_name !== 'string' || !/^v?\d+(\.\d+)*[\w.-]*$/.test(r.tag_name)
+    || Number.isNaN(date.getTime()) || !Array.isArray(r.assets)) {
+    throw new Error(`API GitHub : release illisible sur ${API}`);
+  }
+  // Lien vers CETTE release, pas « latest » : le fichier téléchargé est
+  // toujours celui dont l'empreinte est affichée, même si une release sort
+  // entre deux builds.
+  const lienFichier = (nom: string) => `https://github.com/${REPO}/releases/download/${r.tag_name}/${nom}`;
 
   type Asset = { name: string; size: number; browser_download_url: string };
   const trouver = (nom: string) => r.assets.find((a: Asset) => a.name === nom) as Asset | undefined;
@@ -69,7 +80,7 @@ async function charger(): Promise<Release | null> {
   const sommes = trouver('SHA256SUMS.txt');
   if (!exe || !sommes) throw new Error(`Release ${r.tag_name} incomplète : exécutable ou SHA256SUMS.txt absent`);
 
-  const fichier = await lire(sommes.browser_download_url, 'application/octet-stream');
+  const fichier = await lire(lienFichier(sommes.name), 'application/octet-stream');
   if (!fichier.ok) throw new Error(`SHA256SUMS.txt : ${fichier.status}`);
   const lignes = (await fichier.text()).split('\n').map((l) => l.trim().split(/\s+/));
   const empreinte = (nom: string) => lignes.find(([, f]) => f === nom || f === `*${nom}`)?.[0] ?? '';
@@ -85,18 +96,19 @@ async function charger(): Promise<Release | null> {
 
   return {
     version: r.tag_name,
-    date: new Date(r.published_at),
+    date,
     taille: exe.size,
     sha256,
-    signe: !/non signé/i.test(r.body ?? ''),
+    // Note de release absente ou vide : on n'annonce pas un binaire signé.
+    signe: typeof r.body === 'string' && r.body.trim() !== '' && !/non signé/i.test(r.body),
     virustotal: `https://www.virustotal.com/gui/file/${shaVt}`,
-    telechargement: `https://github.com/${REPO}/releases/latest/download/${exe.name}`,
+    telechargement: lienFichier(exe.name),
     fichier: exe.name,
     mac: dmg ? {
       fichier: DMG,
       taille: dmg.size,
       sha256: shaDmg,
-      telechargement: `https://github.com/${REPO}/releases/latest/download/${DMG}`,
+      telechargement: lienFichier(DMG),
     } : null,
   };
 }

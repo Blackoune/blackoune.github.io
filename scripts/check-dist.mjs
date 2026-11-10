@@ -65,6 +65,11 @@ for (const fichier of pages(DIST)) {
   if (/<[a-z][^>]*\sstyle="/i.test(html)) signaler('attribut style="" (bloqué par la CSP)');
   if (/<[a-z][^>]*\son[a-z]+="/i.test(html)) signaler('attribut on* (gestionnaire en ligne)');
   if (/href="javascript:/i.test(html)) signaler('lien javascript:');
+  if (/<base\b/i.test(html)) signaler('balise <base> (détourne les liens relatifs)');
+  if (/<form\b/i.test(html)) signaler('balise <form> (le site n\'envoie aucune donnée)');
+  if (/<meta[^>]+http-equiv=["']?refresh/i.test(html)) signaler('redirection <meta http-equiv="refresh">');
+  // Les contrôles ci-dessus ne lisent que les attributs entre guillemets doubles.
+  if (/<[a-z][^>]*\s(?:src|href|srcset|poster|data|style|on[a-z]+)='/i.test(html)) signaler('attribut entre apostrophes (non contrôlé)');
 
   for (const [, valeur] of html.matchAll(/\b(?:href|src)="(\/[^"]*)"/g)) {
     if (!valeur.startsWith(BASE)) signaler(`lien interne hors de ${BASE} : ${valeur}`);

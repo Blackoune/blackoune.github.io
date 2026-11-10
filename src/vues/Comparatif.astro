@@ -42,11 +42,11 @@ const t = TEXTES[lang].comparatif;
 
 <style>
   .entete { padding: clamp(3rem, 8vw, 5rem) 0 2rem; }
-  .defile { overflow-x: auto; border: 1px solid var(--ligne); border-radius: 1rem; }
+  .defile { overflow-x: auto; border: 1px solid var(--ligne); border-radius: var(--rayon-grand); }
   table { width: 100%; border-collapse: collapse; min-width: 44rem; font-size: .95rem; }
   th, td { text-align: left; vertical-align: top; padding: .9rem 1rem; border-bottom: 1px solid var(--ligne); }
   tbody tr:last-child > * { border-bottom: 0; }
-  thead th { font-size: .8rem; font-family: var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--texte-doux); }
+  thead th { font-size: .85rem; font-weight: 600; color: var(--texte-doux); }
   thead th:nth-child(2) { color: var(--accent); }
   tbody th { font-weight: 600; width: 16%; }
   tbody td { color: var(--texte-doux); }

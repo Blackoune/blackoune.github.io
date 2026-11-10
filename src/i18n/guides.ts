@@ -23,7 +23,7 @@ const fr: Record<GuideCle, Guide> = {
   'guide-scenes': {
     slug: 'changer-de-scene-obs-automatiquement',
     court: 'Changer de scène OBS automatiquement',
-    titre: 'Changer de scène OBS automatiquement selon le jeu (menu, en jeu) — OBS Dynamics',
+    titre: 'Changer de scène OBS automatiquement selon le jeu (menu, en jeu) | OBS Dynamics',
     description: "Comment basculer automatiquement vos scènes OBS Studio quand un jeu se lance, et entre le menu et la partie : guide pas à pas, gratuit, pour Windows.",
     h1: 'Comment changer de scène OBS automatiquement selon le jeu ?',
     intro: "Installez OBS Dynamics, activez le serveur WebSocket d'OBS, puis ajoutez votre jeu avec une scène « Menu » et une scène « En jeu » : la scène change toute seule. L'application repère le jeu lancé, compare l'écran à vos captures de référence et commande OBS Studio, sans plugin à installer dans OBS.",
@@ -50,7 +50,7 @@ const fr: Record<GuideCle, Guide> = {
   'guide-sous-titres': {
     slug: "sous-titres-automatiques-obs-twitch",
     court: "Sous-titres automatiques sur OBS et Twitch",
-    titre: "Sous-titres automatiques en direct sur OBS, Twitch et YouTube (gratuit) — OBS Dynamics",
+    titre: "Sous-titres automatiques en direct sur OBS, Twitch et YouTube (gratuit) | OBS Dynamics",
     description: "Ajoutez des sous-titres en direct à votre stream : transcription locale du micro ou du son du PC, widget OBS stylé ou sous-titres CC sur Twitch et YouTube. Gratuit, sans compte.",
     h1: "Comment ajouter des sous-titres automatiques à un live OBS ?",
     intro: "Dans l'onglet **Sous-titres** d'OBS Dynamics, choisissez votre micro et la langue, puis cliquez sur **Démarrer** : vos paroles s'écrivent en 0,3 seconde environ. Affichez-les dans OBS avec le widget (source navigateur), ou envoyez-les en sous-titres CC que chaque spectateur active sur Twitch ou YouTube. La transcription se fait sur votre PC : aucun compte, aucune clé, aucun son envoyé sur internet.",
@@ -84,7 +84,7 @@ const fr: Record<GuideCle, Guide> = {
   'guide-musique': {
     slug: 'afficher-musique-en-cours-obs',
     court: 'Afficher la musique en cours sur OBS',
-    titre: 'Afficher la musique en cours sur OBS (Spotify, Deezer, Apple Music) — OBS Dynamics',
+    titre: 'Afficher la musique en cours sur OBS (Spotify, Deezer, Apple Music) | OBS Dynamics',
     description: "Widget « en cours de lecture » pour OBS : pochette, titre, artiste et forme d'onde depuis Spotify, Deezer, Apple Music ou YouTube Music, sans compte ni clé d'API.",
     h1: 'Comment afficher la musique en cours de lecture sur OBS ?',
     intro: "Avec OBS Dynamics, ouvrez l'onglet **Widget Musique**, copiez le lien du lecteur voulu et collez-le dans OBS comme source navigateur : pochette, titre, artiste et forme d'onde s'affichent pendant la lecture. Les informations viennent de Windows lui-même : aucun compte Spotify ni clé d'API à connecter.",
@@ -108,7 +108,7 @@ const fr: Record<GuideCle, Guide> = {
   'guide-chat': {
     slug: 'afficher-chat-twitch-obs',
     court: 'Afficher le chat Twitch sur OBS',
-    titre: 'Afficher le chat Twitch sur OBS sans compte ni clé — OBS Dynamics',
+    titre: 'Afficher le chat Twitch sur OBS sans compte ni clé | OBS Dynamics',
     description: 'Overlay de chat Twitch pour OBS en lecture anonyme : aucun compte, aucune clé, un lien permanent à coller comme source navigateur.',
     h1: 'Comment afficher le chat Twitch sur OBS ?',
     intro: 'Dans OBS Dynamics, saisissez le nom de votre chaîne Twitch, copiez le lien du chat et collez-le dans OBS comme source navigateur. Le chat est lu en anonyme : aucune connexion à votre compte Twitch, aucune clé à créer.',
@@ -132,7 +132,7 @@ const fr: Record<GuideCle, Guide> = {
   'guide-raccourcis': {
     slug: 'cacher-minimap-image-son-obs-raccourci',
     court: 'Cacher la minimap avec un raccourci OBS',
-    titre: 'Cacher la minimap ou afficher une image sur OBS avec une touche — OBS Dynamics',
+    titre: 'Cacher la minimap ou afficher une image sur OBS avec une touche | OBS Dynamics',
     description: 'Associez une touche ou une combinaison à une image, une vidéo ou un son dans OBS. Mode maintien : la minimap reste cachée tant que la touche est enfoncée.',
     h1: 'Comment cacher la minimap ou afficher une image sur OBS avec une touche ?',
     intro: "Dans l'onglet **Raccourcis & Overlays** d'OBS Dynamics, associez une combinaison (par exemple `Ctrl + Maj + M`) à une image, une vidéo ou un son, puis collez le lien fourni dans OBS comme source navigateur. En mode **Maintien**, l'image reste affichée tant que la touche est enfoncée : idéal pour cacher une minimap à vos viewers.",
@@ -159,7 +159,7 @@ const en: Record<GuideCle, Guide> = {
   'guide-scenes': {
     slug: 'switch-obs-scenes-automatically',
     court: 'Switch OBS scenes automatically',
-    titre: 'Switch OBS scenes automatically for each game (menu, gameplay) — OBS Dynamics',
+    titre: 'Switch OBS scenes automatically for each game (menu, gameplay) | OBS Dynamics',
     description: 'How to switch OBS Studio scenes automatically when a game starts, and between menu and gameplay: a free, step-by-step guide for Windows.',
     h1: 'How do I switch OBS scenes automatically for each game?',
     intro: 'Install OBS Dynamics, turn on the OBS WebSocket server, then add your game with a “Menu” scene and an “In game” scene: the scene switches on its own. The app spots the running game, compares the screen with your reference screenshots and drives OBS Studio, with no plugin to install in OBS.',
@@ -186,7 +186,7 @@ const en: Record<GuideCle, Guide> = {
   'guide-sous-titres': {
     slug: "live-subtitles-obs-twitch",
     court: "Live subtitles on OBS and Twitch",
-    titre: "Automatic live subtitles for OBS, Twitch and YouTube (free) — OBS Dynamics",
+    titre: "Automatic live subtitles for OBS, Twitch and YouTube (free) | OBS Dynamics",
     description: "Add live subtitles to your stream: local transcription of your mic or PC audio, a styled OBS widget or Twitch and YouTube closed captions. Free, no account.",
     h1: "How do I add automatic subtitles to an OBS live stream?",
     intro: "In the **Subtitles** tab of OBS Dynamics, pick your microphone and language, then click **Start**: your words appear in about 0.3 seconds. Show them in OBS with the widget (browser source), or send them as closed captions that each viewer turns on with the CC button on Twitch or YouTube. Transcription runs on your PC: no account, no key, no audio sent over the internet.",
@@ -220,7 +220,7 @@ const en: Record<GuideCle, Guide> = {
   'guide-musique': {
     slug: 'obs-now-playing-widget',
     court: 'Show the song playing on OBS',
-    titre: 'Show the song now playing on OBS (Spotify, Deezer, Apple Music) — OBS Dynamics',
+    titre: 'Show the song now playing on OBS (Spotify, Deezer, Apple Music) | OBS Dynamics',
     description: 'A “now playing” widget for OBS: cover, title, artist and waveform from Spotify, Deezer, Apple Music or YouTube Music, with no account or API key.',
     h1: 'How do I show the song now playing on OBS?',
     intro: 'In OBS Dynamics, open the **Music Widget** tab, copy the link of the player you want and paste it into OBS as a browser source: cover, title, artist and a waveform appear while music plays. The data comes from Windows itself: no Spotify account and no API key to connect.',
@@ -244,7 +244,7 @@ const en: Record<GuideCle, Guide> = {
   'guide-chat': {
     slug: 'twitch-chat-overlay-obs',
     court: 'Show Twitch chat on OBS',
-    titre: 'Show Twitch chat on OBS with no account or key — OBS Dynamics',
+    titre: 'Show Twitch chat on OBS with no account or key | OBS Dynamics',
     description: 'A Twitch chat overlay for OBS that reads anonymously: no account, no key, one permanent link to paste as a browser source.',
     h1: 'How do I show Twitch chat on OBS?',
     intro: 'In OBS Dynamics, enter your Twitch channel name, copy the chat link and paste it into OBS as a browser source. Chat is read anonymously: no sign-in to your Twitch account, no key to create.',
@@ -268,7 +268,7 @@ const en: Record<GuideCle, Guide> = {
   'guide-raccourcis': {
     slug: 'obs-hotkey-hide-minimap',
     court: 'Hide the minimap with an OBS hotkey',
-    titre: 'Hide the minimap or show an image on OBS with a hotkey — OBS Dynamics',
+    titre: 'Hide the minimap or show an image on OBS with a hotkey | OBS Dynamics',
     description: 'Bind a key or a key combination to an image, video or sound in OBS. Hold mode: the minimap stays hidden while the key is held.',
     h1: 'How do I hide the minimap or show an image on OBS with a key?',
     intro: 'In the **Hotkeys & Overlays** tab of OBS Dynamics, bind a combination (for example `Ctrl + Shift + M`) to an image, a video or a sound, then paste the provided link into OBS as a browser source. In **Hold** mode, the image stays on screen while the key is held: perfect for hiding a minimap from your viewers.',

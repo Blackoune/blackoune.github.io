@@ -6,7 +6,7 @@ import Widget from '../components/demo/Widget.astro';
 import SousTitres from '../components/demo/SousTitres.astro';
 import { derniereRelease } from '../data/release';
 import { GUIDES, GUIDES_CLES, lien, TEXTES, type Lang } from '../i18n';
-import { GITHUB_URL, REPO } from '../site';
+import { GITHUB_URL } from '../site';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -50,7 +50,7 @@ const logiciel = {
   featureList: t.fonctions,
   ...(release && {
     softwareVersion: release.version.replace(/^v/, ''),
-    downloadUrl: `https://github.com/${REPO}/releases/latest/download/OBS-Dynamics-Setup.exe`,
+    downloadUrl: release.telechargement,
   }),
 };
 
@@ -70,7 +70,7 @@ const jsonLd = {
   <section class="accroche">
     <div>
       <p class="surtitre">{t.surtitre}</p>
-      <h1 class="titre-page" data-motion-titre>{t.h1}</h1>
+      <h1 class="titre-page">{t.h1}</h1>
       <p class="chapo">{t.chapo}</p>
       <div class="actions">
         <a class="btn btn-primaire" href={lien(lang, 'installation')}>{c.telechargerWindows}</a>
@@ -106,13 +106,13 @@ const jsonLd = {
   </section>
 
   <!-- ======================= Comment ça marche ======================= -->
-  <section class="mecanisme" aria-labelledby="titre-mecanisme" data-motion="mecanisme">
+  <section class="mecanisme" aria-labelledby="titre-mecanisme">
     <div>
       <h2 id="titre-mecanisme" class="section-titre">{t.mecanisme.titre}</h2>
       <ol class="temps">
         {t.mecanisme.temps.map(([titre, texte], i) => (
           <li data-temps={i + 1}>
-            <span class="temps-num mono">0{i + 1}</span>
+            <span class="temps-num">{i + 1}</span>
             <div><h3>{titre}</h3><p>{texte}</p></div>
           </li>
         ))}
@@ -174,7 +174,7 @@ const jsonLd = {
       </div>
     </article>
 
-    <article class="module module-inverse">
+    <article class="module">
       <div class="module-texte">
         <p class="module-num mono">{m.hotkeys[0]}</p>
         <h3>{m.hotkeys[1]}</h3>
@@ -208,7 +208,7 @@ const jsonLd = {
       </div>
     </article>
 
-    <article class="module module-inverse">
+    <article class="module">
       <div class="module-texte">
         <p class="module-num mono">{m.chat[0]}</p>
         <h3>{m.chat[1]}</h3>
@@ -226,7 +226,7 @@ const jsonLd = {
       <div class="demo"><Widget /></div>
     </article>
 
-    <article class="module module-inverse">
+    <article class="module">
       <div class="module-texte">
         <p class="module-num mono">{m.sousTitres[0]}</p>
         <h3>{m.sousTitres[1]}</h3>
@@ -281,7 +281,7 @@ const jsonLd = {
     <h2 id="titre-guides" class="section-titre">{c.guides}</h2>
     <ul>
       {GUIDES_CLES.map((cle) => (
-        <li><a href={lien(lang, cle)}><span>{GUIDES[lang][cle].h1}</span><span class="fleche" aria-hidden="true">→</span></a></li>
+        <li><a href={lien(lang, cle)}><span>{GUIDES[lang][cle].h1}</span><svg class="fleche" aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-7-7l7 7l-7 7" /></svg></a></li>
       ))}
     </ul>
   </section>
@@ -310,7 +310,7 @@ const jsonLd = {
   .regie { display: grid; gap: .75rem; }
   .ecran {
     position: relative; aspect-ratio: 16 / 9; overflow: hidden;
-    border: 1px solid var(--ligne); border-radius: .75rem; background: #0d1520;
+    border: 1px solid var(--ligne); border-radius: var(--rayon-grand); background: #0d1520;
   }
   .ecran > div { position: absolute; inset: 0; transition: opacity .45s; }
   .ecran-menu {
@@ -322,7 +322,7 @@ const jsonLd = {
   .ecran-menu li { font-size: clamp(.7rem, 1.4vw, .9rem); color: #b8b2bf; text-transform: uppercase; letter-spacing: .08em; }
   .ecran-menu li.actif { color: #fff; }
   .ecran-jeu { background: repeating-linear-gradient(115deg, #1b2a3a 0 30px, #1f3242 30px 60px); }
-  .hud-carte { position: absolute; top: 7%; left: 5%; width: 18%; aspect-ratio: 1; border: 2px solid rgba(255, 255, 255, .5); border-radius: .3rem; background: rgba(9, 14, 20, .55); }
+  .hud-carte { position: absolute; top: 7%; left: 5%; width: 18%; aspect-ratio: 1; border: 2px solid rgba(255, 255, 255, .5); border-radius: var(--rayon); background: rgba(9, 14, 20, .55); }
   .hud-viseur { position: absolute; top: 50%; left: 50%; width: 14px; height: 14px; margin: -7px; border: 2px solid #4ade80; border-radius: 50%; }
   .hud-vie, .hud-munitions { position: absolute; bottom: 7%; font-size: clamp(.8rem, 1.8vw, 1.15rem); color: #fff; font-weight: 700; }
   .hud-vie { left: 6%; }
@@ -334,10 +334,10 @@ const jsonLd = {
     background: linear-gradient(90deg, transparent, rgba(34, 211, 238, .25), transparent);
   }
 
-  .obs { border: 1px solid var(--ligne); border-radius: .75rem; background: var(--surface); padding: .9rem; }
+  .obs { border: 1px solid var(--ligne); border-radius: var(--rayon-grand); background: var(--surface); padding: .9rem; }
   .obs-titre { font-size: .7rem; color: var(--texte-doux); margin: 0 .4rem .5rem; }
   .obs ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .2rem; }
-  .obs li { padding: .45rem .6rem; border-radius: .35rem; font-size: .8rem; color: var(--texte-doux); transition: background-color .3s, color .3s, box-shadow .3s; }
+  .obs li { padding: .45rem .6rem; border-radius: var(--rayon); font-size: .8rem; color: var(--texte-doux); transition: background-color .3s, color .3s, box-shadow .3s; }
   .obs li.actif { background: var(--surface-haute); color: var(--texte); box-shadow: inset 2px 0 0 var(--accent); }
   .obs-statut { margin: .7rem .4rem 0; font-size: .72rem; color: var(--texte-doux); display: flex; align-items: center; gap: .5rem; }
   .point { width: .5rem; height: .5rem; border-radius: 50%; background: #4ade80; }
@@ -351,27 +351,29 @@ const jsonLd = {
   /* ---------- Comment ça marche ---------- */
   .mecanisme {
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-    gap: clamp(2rem, 5vw, 4rem); align-items: center;
+    gap: clamp(2rem, 5vw, 4rem); align-items: start;
     padding: clamp(4rem, 8vw, 6rem) 0; border-top: 1px solid var(--ligne);
   }
   .temps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; }
-  .temps li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; transition: opacity .3s; }
-  .temps-num { color: var(--accent); padding-top: .2rem; }
+  .temps li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: 1rem; }
+  .temps-num { color: var(--texte-doux); font-size: 1.2rem; font-weight: 700; font-variant-numeric: tabular-nums; }
   .temps h3 { margin: 0 0 .3rem; font-size: 1.2rem; }
   .temps p { margin: 0; color: var(--texte-doux); }
 
   .mecanisme-scene { display: grid; gap: 1rem; }
-  .panneau-m { border: 1px solid var(--ligne); border-radius: .9rem; background: var(--surface); padding: 1.1rem 1.25rem; }
+  /* Les trois temps restent en vue pendant que les panneaux défilent. */
+  @media (min-width: 861px) { .mecanisme > div:first-child { position: sticky; top: 2rem; } }
+  .panneau-m { border: 1px solid var(--ligne); border-radius: var(--rayon-grand); background: var(--surface); padding: 1.1rem 1.25rem; }
   .panneau-titre { font-size: .7rem; color: var(--texte-doux); margin: 0 0 .75rem; }
   .processus, .obs-liste { list-style: none; margin: 0; padding: 0; font-size: .8rem; display: grid; gap: .15rem; }
-  .processus li, .obs-liste li { padding: .4rem .6rem; border-radius: .35rem; color: var(--texte-doux); }
+  .processus li, .obs-liste li { padding: .4rem .6rem; border-radius: var(--rayon); color: var(--texte-doux); }
   .processus .trouve { color: var(--texte); background: var(--surface-haute); box-shadow: inset 2px 0 0 var(--accent); display: flex; justify-content: space-between; gap: 1rem; }
   .processus b { color: var(--accent); font-weight: 500; }
   .cadrage {
-    position: relative; aspect-ratio: 16 / 7; border-radius: .5rem; overflow: hidden;
+    position: relative; aspect-ratio: 16 / 7; border-radius: var(--rayon); overflow: hidden;
     background: repeating-linear-gradient(115deg, #1b2a3a 0 26px, #1f3242 26px 52px);
   }
-  .cadre { position: absolute; border: 1.5px dashed var(--accent); border-radius: .25rem; }
+  .cadre { position: absolute; border: 1.5px dashed var(--accent); border-radius: var(--rayon); }
   .cadre i { position: absolute; top: -.1rem; left: .2rem; font-size: .6rem; font-style: normal; color: var(--accent); }
   .c1 { top: 8%; left: 4%; width: 18%; height: 38%; }
   .c2 { bottom: 8%; left: 5%; width: 13%; height: 20%; }
@@ -382,7 +384,7 @@ const jsonLd = {
   .scores { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: .5rem 1.75rem; margin: .9rem 0 0; font-size: .75rem; }
   .scores dt { color: var(--texte-doux); }
   .scores dd { margin: .15rem 0 0; display: flex; align-items: center; gap: .5rem; }
-  .jauge { width: 4.5rem; height: .3rem; border-radius: 1rem; background: var(--ligne); overflow: hidden; }
+  .jauge { width: 4.5rem; height: .3rem; border-radius: 999px; background: var(--ligne); overflow: hidden; }
   .jauge i { display: block; height: 100%; background: var(--texte-doux); transform-origin: left; }
   .j-menu { transform: scaleX(.31); }
   .jauge .j-jeu { transform: scaleX(.94); background: var(--accent); }
@@ -390,25 +392,18 @@ const jsonLd = {
   .obs-liste .entree { color: var(--texte); background: var(--surface-haute); box-shadow: inset 2px 0 0 var(--accent); }
   .requete { margin: .75rem 0 0; font-size: .72rem; color: var(--texte-doux); }
 
-  /* Grand écran avec JavaScript : panneaux superposés, section épinglée
-     (motion.ts pose la classe .epingle). Sans elle : les trois empilés. */
-  .mecanisme.epingle .mecanisme-scene { position: relative; min-height: 22rem; }
-  .mecanisme.epingle .panneau-m { position: absolute; inset: 0 0 auto; }
-  .mecanisme.epingle .temps li { opacity: .3; }
-  .mecanisme.epingle .temps li.actif { opacity: 1; }
-
   /* ---------- Modules ---------- */
   .modules { padding: clamp(4rem, 8vw, 6rem) 0; border-top: 1px solid var(--ligne); }
   .module {
     display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
     gap: clamp(2rem, 5vw, 4.5rem); align-items: center; padding: clamp(2.5rem, 5vw, 4rem) 0;
   }
-  .module-inverse .module-texte { order: 2; }
-  .module-num { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 .75rem; }
+  .module + .module { border-top: 1px solid var(--ligne); }
+  .module-num { font-size: .9rem; color: var(--texte-doux); margin: 0 0 .5rem; }
   .module h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.1; margin: 0 0 1rem; font-variation-settings: 'wdth' 82; }
   .module-texte > p:last-child { color: var(--texte-doux); margin: 0; }
   .module-texte code { color: var(--texte); }
-  .demo { border: 1px solid var(--ligne); border-radius: 1rem; background: var(--surface); overflow: hidden; }
+  .demo { border: 1px solid var(--ligne); border-radius: var(--rayon-grand); background: var(--surface); overflow: hidden; }
 
   /* Hauteur fixe : la grille change de colonnes à l'intérieur, la page ne bouge pas.
      En 2 colonnes, les jaquettes dépassent et sont coupées en fondu en haut et en bas. */
@@ -422,7 +417,7 @@ const jsonLd = {
   .biblio[data-colonnes='2'] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .biblio[data-colonnes='8'] { grid-template-columns: repeat(8, minmax(0, 1fr)); }
   .jaquette { display: grid; gap: .3rem; min-width: 0; align-content: start; }
-  .jaquette-image { aspect-ratio: 2 / 3; border-radius: .35rem; background: #57534e; }
+  .jaquette-image { aspect-ratio: 2 / 3; border-radius: var(--rayon); background: #57534e; }
   .jaquette:nth-child(1) .jaquette-image { background: #b45309; }
   .jaquette:nth-child(2) .jaquette-image { background: #0f766e; }
   .jaquette:nth-child(3) .jaquette-image { background: #4338ca; }
@@ -431,7 +426,7 @@ const jsonLd = {
   .jaquette:nth-child(7) .jaquette-image { background: #0369a1; }
   .jaquette:nth-child(8) .jaquette-image { background: #a21caf; }
   .jaquette-nom { font-size: .72rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .pastille { justify-self: start; font-size: .6rem; padding: .05rem .4rem; border-radius: 1rem; background: var(--ligne); color: var(--texte-doux); }
+  .pastille { justify-self: start; font-size: .6rem; padding: .05rem .4rem; border-radius: 999px; background: var(--ligne); color: var(--texte-doux); }
   .pastille.actif { background: #14532d; color: #86efac; }
   .biblio[data-colonnes='8'] :is(.jaquette-nom, .pastille) { display: none; }
 
@@ -439,7 +434,7 @@ const jsonLd = {
   .touches { display: flex; gap: .9rem; }
   .touche {
     display: grid; justify-items: center; gap: .15rem; min-width: 4.5rem; padding: .7rem .8rem .55rem;
-    border-radius: .6rem; background: var(--surface-haute); border: 1px solid var(--ligne);
+    border-radius: var(--rayon); background: var(--surface-haute); border: 1px solid var(--ligne);
     box-shadow: 0 4px 0 #070a10; color: var(--texte);
     transition: transform .08s, box-shadow .08s, border-color .08s;
   }
@@ -452,12 +447,12 @@ const jsonLd = {
   .combo { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; justify-content: center; }
   .touche.petite { min-width: 3rem; padding: .5rem .6rem; font-family: var(--mono); font-size: .9rem; }
   .plus { color: var(--texte-doux); }
-  .mode { margin-left: .75rem; font-size: .7rem; padding: .2rem .55rem; border: 1px solid var(--accent); color: var(--accent); border-radius: 1rem; }
+  .mode { margin-left: .75rem; font-size: .7rem; padding: .2rem .55rem; border: 1px solid var(--accent); color: var(--accent); border-radius: 999px; }
   .mini-ecran {
-    position: relative; width: min(100%, 22rem); aspect-ratio: 16 / 9; border-radius: .5rem; overflow: hidden;
+    position: relative; width: min(100%, 22rem); aspect-ratio: 16 / 9; border-radius: var(--rayon); overflow: hidden;
     background: repeating-linear-gradient(115deg, #1b2a3a 0 22px, #1f3242 22px 44px);
   }
-  .mini-carte, .cache { position: absolute; top: 8%; left: 5%; width: 26%; aspect-ratio: 1; border-radius: .3rem; }
+  .mini-carte, .cache { position: absolute; top: 8%; left: 5%; width: 26%; aspect-ratio: 1; border-radius: var(--rayon); }
   .mini-carte { border: 2px solid rgba(255, 255, 255, .5); background: rgba(9, 14, 20, .55); }
   .cache {
     display: grid; place-items: center; text-align: center; font-size: .55rem; color: var(--encre-accent);
@@ -494,15 +489,15 @@ const jsonLd = {
     border-top: 1px solid var(--ligne); text-decoration: none; font-size: 1.1rem; font-weight: 600;
   }
   .guides a:hover { color: var(--accent); }
-  .fleche { color: var(--accent); }
+  /* Icône Lucide « arrow-right » (ISC). */
+  .fleche { flex: none; width: 1.25em; height: 1.25em; color: var(--accent); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
   /* ---------- Appel final ---------- */
-  .appel { padding: clamp(4rem, 10vw, 7rem) 0 2rem; border-top: 1px solid var(--ligne); display: grid; gap: 2rem; justify-items: start; }
-  .appel-titre { font-size: clamp(2.2rem, 6vw, 4.2rem); line-height: 1; letter-spacing: -.02em; margin: 0; max-width: 16ch; font-variation-settings: 'wdth' 70; font-weight: 800; }
+  .appel { padding: 2.5rem 0 1rem; border-top: 1px solid var(--ligne); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; }
+  .appel-titre { font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.15; margin: 0; max-width: 26ch; font-variation-settings: 'wdth' 82; font-weight: 700; text-wrap: balance; }
 
   @media (max-width: 860px) {
     .accroche, .mecanisme, .module, .garanties { grid-template-columns: 1fr; }
-    .module-inverse .module-texte { order: 0; }
     .biblio[data-colonnes='8'] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   }
 </style>

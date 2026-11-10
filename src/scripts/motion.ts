@@ -3,17 +3,13 @@
 //  - Sans JavaScript : la page affiche l'état final de chaque démo (écrit
 //    dans le HTML). Le réglage système « réduire les animations » est ignoré
 //    volontairement : les démos montrent le logiciel, tout le monde doit les voir.
-//  - Sous 861 px de large : pas d'épinglage, animations simplifiées.
+//  - Le défilement reste celui du navigateur : rien n'est épinglé ni lissé.
 //  - Une démo ne tourne que lorsqu'elle est visible.
 // Les styles passent par le CSSOM (element.style), autorisé par la CSP.
-import 'lenis/dist/lenis.css';
-import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText } from 'gsap/SplitText';
 
-gsap.registerPlugin(Flip, ScrollTrigger, SplitText);
+gsap.registerPlugin(Flip);
 
 const $ = <T extends Element = HTMLElement>(sel: string, racine: ParentNode = document) => racine.querySelector<T>(sel);
 const $$ = <T extends Element = HTMLElement>(sel: string, racine: ParentNode = document) => [...racine.querySelectorAll<T>(sel)];
@@ -141,14 +137,6 @@ function demoChat() {
 // Accroche : l'écran passe de « menu » à « en jeu », la scène OBS suit.
 // --------------------------------------------------------------------------
 function accroche() {
-  const titre = $('[data-motion-titre]');
-  // Grand écran seulement : sur mobile, redécouper le titre repeint le plus
-  // grand élément de la page et retarde son affichage final (LCP).
-  if (titre && matchMedia('(min-width: 861px)').matches) {
-    const mots = SplitText.create(titre, { type: 'words', mask: 'words' });
-    gsap.from(mots.words, { yPercent: 110, duration: 0.9, ease: 'expo.out', stagger: 0.06, delay: 0.1 });
-  }
-
   const regie = $('[data-motion="regie"]');
   if (!regie) return;
   const ecran = $('.ecran', regie)!;
@@ -172,40 +160,6 @@ function accroche() {
   boucle.to({}, { duration: 2.4 });
   balayage(boucle).call(basculer('jeu', regie.dataset.jeu!));
   quandVisible(regie, boucle);
-}
-
-// --------------------------------------------------------------------------
-// Comment ça marche : section épinglée sur grand écran, trois temps au scroll.
-// --------------------------------------------------------------------------
-function mecanisme(mm: gsap.MatchMedia) {
-  const section = $('[data-motion="mecanisme"]');
-  if (!section) return;
-  mm.add('(min-width: 861px)', () => {
-    section.classList.add('epingle');
-    const panneaux = $$('[data-panneau]', section);
-    const temps = $$('[data-temps]', section);
-    const etape = (n: number) => temps.forEach((t, i) => t.classList.toggle('actif', i === n));
-    etape(0);
-    gsap.set(panneaux.slice(1), { autoAlpha: 0, y: 24 });
-
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: section, start: 'center center', end: '+=140%', pin: true, scrub: 0.6,
-        onUpdate: ({ progress }) => etape(progress < 0.33 ? 0 : progress < 0.66 ? 1 : 2),
-      },
-    })
-      .to(panneaux[0], { autoAlpha: 0, y: -24 }, 0.3)
-      .to(panneaux[1], { autoAlpha: 1, y: 0 }, 0.4)
-      .fromTo($$('.cadre', panneaux[1]), { scale: 0.6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, stagger: 0.05 }, 0.45)
-      .to(panneaux[1], { autoAlpha: 0, y: -24 }, 1.1)
-      .to(panneaux[2], { autoAlpha: 1, y: 0 }, 1.2)
-      .to({}, { duration: 0.4 });
-
-    return () => {
-      section.classList.remove('epingle');
-      temps.forEach((t) => t.classList.remove('actif'));
-    };
-  });
 }
 
 // --------------------------------------------------------------------------
@@ -296,13 +250,7 @@ function langues() {
 }
 
 // --------------------------------------------------------------------------
-const lenis = new Lenis({ autoRaf: false });
-lenis.on('scroll', ScrollTrigger.update);
-gsap.ticker.add((t) => lenis.raf(t * 1000));
-gsap.ticker.lagSmoothing(0);
-
 accroche();
-mecanisme(gsap.matchMedia());
 bibliotheque();
 hotkeys();
 raccourci();

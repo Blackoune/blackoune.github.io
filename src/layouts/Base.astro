@@ -1,6 +1,7 @@
 ---
 import '@fontsource-variable/archivo/wdth.css';
-import '@fontsource-variable/jetbrains-mono';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/600.css';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import { GUIDES, GUIDES_CLES, LANGUES, lien, TEXTES, type Lang, type Page } from '../i18n';
@@ -101,5 +102,8 @@ const ld = jsonLd && JSON.stringify(jsonLd).replaceAll('<', '\\u003c');
         </div>
       </div>
     </footer>
+    <script>
+      import '../scripts/anti-cadre';
+    </script>
   </body>
 </html>

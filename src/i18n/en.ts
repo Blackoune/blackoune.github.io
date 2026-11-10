@@ -28,7 +28,7 @@ export const en: Textes = {
   },
 
   accueil: {
-    titre: 'OBS Dynamics — automatic OBS scenes and live subtitles',
+    titre: 'OBS Dynamics: automatic OBS scenes and live subtitles',
     description: "Free app for OBS: your scenes switch with the game, and your words show as automatic live subtitles on Twitch and YouTube, all on your PC. Twitch chat and music widget included.",
     surtitre: 'Free · Windows 10 and 11 · Open source',
     fonctions: ["Automatic OBS scene switching for each game (menu, gameplay)", "Automatic live subtitles for OBS, Twitch and YouTube", "Closed captions (CC) sent through OBS", "Local transcription of microphone or PC audio, no account", "Twitch chat overlay without an account", "Now playing music widget (Spotify, Deezer, Apple Music)", "Hotkeys to show an image, a video or a sound"],
@@ -191,7 +191,7 @@ export const en: Textes = {
   },
 
   contact: {
-    titre: 'Contact — OBS Dynamics',
+    titre: 'Contact | OBS Dynamics',
     description: 'Answers to common OBS Dynamics issues (OBS connection, game detection, overlays), then Discord or email if needed.',
     surtitre: 'Contact',
     h1: 'A question, a problem?',
@@ -237,7 +237,7 @@ export const en: Textes = {
   },
 
   mentions: {
-    titre: 'Legal notice — OBS Dynamics',
+    titre: 'Legal notice | OBS Dynamics',
     description: 'Publisher, host and licence of the OBS Dynamics website.',
     h1: 'Legal notice',
     sections: [
@@ -250,7 +250,7 @@ export const en: Textes = {
   },
 
   confidentialite: {
-    titre: 'Privacy — OBS Dynamics',
+    titre: 'Privacy | OBS Dynamics',
     description: 'This website sets no cookies and collects no data.',
     h1: 'Privacy',
     sections: [

@@ -121,7 +121,7 @@ const jsonLd = {
 
   .contacts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .carte {
-    border: 1px solid var(--ligne); border-radius: 1rem;
+    border: 1px solid var(--ligne); border-radius: var(--rayon-grand);
     background: var(--surface); padding: clamp(1.25rem, 3vw, 1.75rem);
   }
   .carte-titre { font-size: 1.25rem; margin: 0 0 .75rem; font-variation-settings: 'wdth' 85; }
@@ -147,8 +147,8 @@ const jsonLd = {
   }
   .actions { display: flex; gap: .75rem; flex-wrap: wrap; margin: 1rem 0; }
   .badge {
-    font-family: var(--mono); font-size: .7rem; text-transform: uppercase; letter-spacing: .05em;
-    padding: .1rem .4rem; border-radius: .3rem; background: var(--encre-accent); color: var(--accent);
+    font-size: .75rem; font-weight: 600;
+    padding: .1rem .4rem; border-radius: var(--rayon); background: var(--encre-accent); color: var(--accent);
   }
   .resume-titre { margin: 1.25rem 0 .5rem; font-size: .9rem; color: var(--texte-doux); }
 
@@ -156,8 +156,7 @@ const jsonLd = {
   .faq { margin-top: clamp(4rem, 8vw, 6rem); }
   .faq-categorie { margin-bottom: 2.5rem; }
   .faq-categorie h3 {
-    font-family: var(--mono); font-size: .8rem; font-weight: 500; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--accent); margin: 0 0 .5rem;
+    font-size: 1.15rem; font-weight: 700; margin: 0 0 .5rem;
   }
   details { border-top: 1px solid var(--ligne); }
   details:last-child { border-bottom: 1px solid var(--ligne); }
@@ -191,25 +190,24 @@ const jsonLd = {
   .choix button {
     width: 100%; text-align: left; font: inherit; color: var(--texte); cursor: pointer;
     display: flex; gap: .9rem; align-items: baseline;
-    padding: .9rem 1rem; border-radius: .6rem;
+    padding: .9rem 1rem; border-radius: var(--rayon);
     border: 1px solid var(--ligne); background: var(--surface);
     transition: border-color .15s, background-color .15s;
   }
   .choix button:hover { border-color: var(--accent); background: var(--surface-haute); }
-  .choix-index { font-family: var(--mono); font-size: .75rem; color: var(--accent); flex: none; }
   .reponse { margin: 0 0 1.75rem; padding-left: 1.4rem; max-width: 46rem; }
   .reponse li { margin: .5rem 0; }
   .reponse li::marker { color: var(--accent); font-family: var(--mono); }
   .satisfait { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; padding-top: 1.25rem; border-top: 1px solid var(--ligne); }
   .satisfait p { margin: 0 .5rem 0 0; font-weight: 600; }
   .satisfait button, .retour {
-    font: inherit; cursor: pointer; border-radius: .5rem; padding: .5rem 1.1rem;
+    font: inherit; cursor: pointer; border-radius: var(--rayon); padding: .5rem 1.1rem;
     border: 1px solid var(--ligne); background: var(--surface); color: var(--texte);
   }
   .satisfait button:hover, .retour:hover { border-color: var(--texte-doux); }
   .retour { margin-top: 1.5rem; color: var(--texte-doux); }
   .merci {
-    padding: 1rem 1.25rem; border-radius: .6rem; font-weight: 600;
+    padding: 1rem 1.25rem; border-radius: var(--rayon); font-weight: 600;
     background: #0d2a1c; border: 1px solid #1f6b45; color: #86efac;
   }
   .encart-discord { padding-top: 1.25rem; border-top: 1px solid var(--ligne); }

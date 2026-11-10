@@ -31,6 +31,7 @@ export const CSP = [
   "object-src 'none'",
   "base-uri 'none'",
   "form-action 'none'",
+  "require-trusted-types-for 'script'",
   'upgrade-insecure-requests',
 ].join('; ');
 

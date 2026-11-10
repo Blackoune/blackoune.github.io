@@ -52,7 +52,7 @@ if (assistant) {
     const h2 = el('h2', titre);
     h2.tabIndex = -1;
     zone.replaceChildren(h2, ...contenu);
-    fil.textContent = miettes.join(' › ');
+    fil.textContent = miettes.join(' / ');
     if (!focus) return;
     annonce.textContent = titre;
     adresse(chemin);
@@ -62,9 +62,9 @@ if (assistant) {
 
   const accueil = (focus = true) => {
     const liste = el('ul', undefined, 'choix choix-categories');
-    categories.forEach((c, i) => {
+    categories.forEach((c) => {
       const b = bouton('', () => (c.symptomes.length ? categorie(c) : discord(c)));
-      b.append(el('span', String(i + 1).padStart(2, '0'), 'choix-index'), c.titre);
+      b.append(c.titre);
       const li = el('li');
       li.append(b);
       liste.append(li);

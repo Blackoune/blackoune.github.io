@@ -29,7 +29,7 @@ export const fr = {
   },
 
   accueil: {
-    titre: 'OBS Dynamics — scènes OBS automatiques et sous-titres en direct',
+    titre: 'OBS Dynamics : scènes OBS automatiques et sous-titres en direct',
     description: "Logiciel gratuit pour OBS : vos scènes changent selon le jeu, et vos paroles s'affichent en sous-titres automatiques sur Twitch et YouTube, tout en local. Chat Twitch et widget musique inclus.",
     surtitre: 'Gratuit · Windows 10 et 11 · Open source',
     fonctions: ["Changement de scène OBS automatique selon le jeu (menu, en jeu)", "Sous-titres automatiques en direct pour OBS, Twitch et YouTube", "Sous-titres CC (closed captions) envoyés par OBS", "Transcription locale du micro ou du son du PC, sans compte", "Overlay de chat Twitch sans compte", "Widget musique en cours de lecture (Spotify, Deezer, Apple Music)", "Raccourcis clavier pour afficher une image, une vidéo ou un son"],
@@ -192,7 +192,7 @@ export const fr = {
   },
 
   contact: {
-    titre: 'Nous contacter — OBS Dynamics',
+    titre: 'Nous contacter | OBS Dynamics',
     description: "Réponses aux problèmes courants d'OBS Dynamics (connexion à OBS, détection des jeux, overlays), puis Discord ou mail si besoin.",
     surtitre: 'Nous contacter',
     h1: 'Une question, un problème ?',
@@ -238,7 +238,7 @@ export const fr = {
   },
 
   mentions: {
-    titre: 'Mentions légales — OBS Dynamics',
+    titre: 'Mentions légales | OBS Dynamics',
     description: 'Éditeur, hébergeur et licence du site OBS Dynamics.',
     h1: 'Mentions légales',
     sections: [
@@ -251,7 +251,7 @@ export const fr = {
   },
 
   confidentialite: {
-    titre: 'Confidentialité — OBS Dynamics',
+    titre: 'Confidentialité | OBS Dynamics',
     description: 'Ce site ne dépose aucun cookie et ne collecte aucune donnée.',
     h1: 'Confidentialité',
     sections: [

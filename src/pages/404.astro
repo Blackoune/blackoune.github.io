@@ -12,7 +12,7 @@ import { CSP, url } from '../site';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <meta name="robots" content="noindex" />
-    <title>Page introuvable — OBS Dynamics</title>
+    <title>Page introuvable | OBS Dynamics</title>
     <link rel="icon" type="image/png" href={url('favicon.png')} />
   </head>
   <body>
@@ -35,6 +35,7 @@ import { CSP, url } from '../site';
       </div>
     </div>
     <script>
+      import '../scripts/anti-cadre';
       import '../scripts/ancienne-adresse';
       import '../scripts/snake';
     </script>
@@ -47,7 +48,7 @@ import { CSP, url } from '../site';
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-align: center;
   }
-  .introuvable .surtitre { font-size: clamp(3rem, 12vw, 6rem); line-height: 1; margin-bottom: 1rem; }
+  .introuvable .surtitre { font-family: var(--mono); color: var(--accent); font-size: clamp(3rem, 12vw, 6rem); line-height: 1; margin-bottom: 1rem; }
   .introuvable .chapo { margin-inline: auto; }
 
   /* Le « 0 » cache le Snake : même allure que le reste du 404. */
@@ -78,7 +79,7 @@ import { CSP, url } from '../site';
   .snake-fin {
     position: absolute; top: 50%; left: 50%; translate: -50% -50%;
     width: min(26rem, calc(100% - 2rem)); padding: 1.25rem;
-    background: var(--surface); border: 1px solid var(--ligne); border-radius: 6px;
+    background: var(--surface); border: 1px solid var(--ligne); border-radius: var(--rayon);
     display: flex; flex-direction: column; align-items: center; gap: 1rem;
     text-align: center;
   }

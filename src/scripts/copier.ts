@@ -5,7 +5,7 @@ for (const bouton of document.querySelectorAll<HTMLButtonElement>('button[data-c
   bouton.addEventListener('click', async () => {
     await navigator.clipboard.writeText(bouton.dataset.copier ?? '');
     const avant = bouton.textContent;
-    bouton.textContent = bouton.dataset.copie ?? '✓';
+    bouton.textContent = bouton.dataset.copie ?? 'OK';
     bouton.classList.add('copie');
     setTimeout(() => {
       bouton.textContent = avant;

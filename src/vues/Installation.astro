@@ -260,12 +260,12 @@ const jsonLd = {
 
   .os {
     display: inline-flex; gap: .15rem; padding: .3rem; margin-bottom: 2rem;
-    border: 1px solid var(--ligne); border-radius: .75rem; background: var(--surface);
+    border: 1px solid var(--ligne); border-radius: var(--rayon-grand); background: var(--surface);
   }
   .os[hidden] { display: none; }
   .os button {
     font: inherit; font-weight: 600; color: var(--texte-doux);
-    background: none; border: 0; border-radius: .5rem;
+    background: none; border: 0; border-radius: var(--rayon);
     padding: .5rem 1.4rem; cursor: pointer;
   }
   .os button[aria-selected='true'] {
@@ -276,7 +276,7 @@ const jsonLd = {
   .panneau + .panneau { margin-top: 4rem; }
 
   .carte {
-    border: 1px solid var(--ligne); border-radius: 1rem;
+    border: 1px solid var(--ligne); border-radius: var(--rayon-grand);
     background: var(--surface); padding: clamp(1.25rem, 3vw, 2rem);
   }
   .carte-titre { font-size: 1.35rem; margin: 0 0 1.25rem; font-variation-settings: 'wdth' 85; }
@@ -290,7 +290,7 @@ const jsonLd = {
   .fiche { display: grid; grid-template-columns: repeat(3, auto); gap: 1rem 2rem; margin: 1.75rem 0 1rem; justify-content: start; }
   .fiche div { min-width: 0; }
   .fiche-large { grid-column: 1 / -1; }
-  .fiche dt { font-size: .8rem; color: var(--texte-doux); font-family: var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+  .fiche dt { font-size: .8rem; color: var(--texte-doux); }
   .fiche dd { margin: .2rem 0 0; }
 
   .bientot { font-size: 1.3rem; font-weight: 700; margin: 0 0 .5rem; }

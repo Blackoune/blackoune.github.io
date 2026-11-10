@@ -14,8 +14,9 @@ permissions:
   contents: read
 
 # Un seul déploiement à la fois ; celui en cours va jusqu'au bout.
+# Une file par branche : une pull request n'évince jamais un déploiement de main.
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
