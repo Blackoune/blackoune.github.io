@@ -56,7 +56,7 @@ for (const fichier of pages(DIST)) {
     }
   }
 
-  for (const [, attrs, contenu] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+  for (const [, attrs, contenu] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\b[^>]*>/gi)) {
     const donnees = /type="application\/ld\+json"/i.test(attrs);
     if (!donnees && !/\bsrc="/i.test(attrs)) signaler('script en ligne');
     if (!donnees && contenu.trim() && /\bsrc="/i.test(attrs)) signaler('script externe avec contenu en ligne');
