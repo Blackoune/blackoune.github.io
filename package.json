@@ -18,7 +18,7 @@
     "gsap": "3.15.0"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.10",
+    "@astrojs/check": "0.9.12",
     "@types/node": "24.19.0",
     "typescript": "6.0.3"
   }
